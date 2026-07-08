@@ -24,7 +24,7 @@ Every nontrivial deck must go through:
 
 Read `references/router.md` when the request is not a simple one-slide edit.
 
-Use these routes:
+Choose one primary route:
 
 - `native-pptx`: new editable PPTX from brief, document, notes, or outline.
 - `edit-existing`: inspect and modify an existing `.pptx`.
@@ -33,9 +33,12 @@ Use these routes:
 - `reconstruct`: convert screenshots, PDF pages, or image-based decks into editable PPTX.
 - `html-markdown`: build HTML, Marp, Slidev, or Markdown slides, optionally export to PPTX.
 - `google-slides`: use only when cloud collaboration, Drive sharing, or Google Slides API work is required.
+- `qa-audit`: inspect an existing deck and report/fix layout, fidelity, consistency, or editability issues.
+
+Add optional modes when they change the narrative or QA rules:
+
 - `academic`: paper reading, literature report, thesis defense, research update, experiment-heavy deck.
 - `business`: pitch deck, board update, customer proposal, consulting-style deck.
-- `qa-audit`: inspect an existing deck and report/fix layout, fidelity, consistency, or editability issues.
 
 ## Standard Workflow
 
@@ -60,8 +63,10 @@ Use these routes:
 ## Bundled Scripts
 
 - `scripts/plan_from_markdown.py`: make a first `deck_brief.json` and `slide_plan.json` from a Markdown outline.
+- `scripts/validate_plan.py`: validate `deck_brief.json` and `slide_plan.json` without third-party Python packages.
 - `scripts/qa_report.py`: run structural QA on a `slide_plan.json`.
 - `scripts/html_preview.py`: generate a simple static HTML preview from `slide_plan.json`.
+- `scripts/render_pptx_preview.sh`: optional LibreOffice-based PPTX-to-PDF/PNG preview renderer.
 - `scripts/build_pptx_pptxgenjs.mjs`: optional native PPTX builder when `pptxgenjs` is installed.
 
 Run scripts from the skill directory unless the task has a project-specific output folder.

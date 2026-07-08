@@ -49,3 +49,11 @@
 2. Check structural, visual, content, and editability issues.
 3. Classify issues as blocker, major, or minor.
 4. Repair blocker and major issues before delivery when the user requested a finished deck.
+
+## Validation And Preview
+
+1. Run `scripts/quick_validate.py` to check the Skill package structure.
+2. Run `scripts/validate_plan.py slide_plan.json --brief deck_brief.json` after generating or editing a plan.
+3. Run `scripts/qa_report.py slide_plan.json` for structural QA before building.
+4. Use `scripts/html_preview.py` for a fast local preview of planned content.
+5. Use `scripts/render_pptx_preview.sh` when LibreOffice is available and the output is a `.pptx`.

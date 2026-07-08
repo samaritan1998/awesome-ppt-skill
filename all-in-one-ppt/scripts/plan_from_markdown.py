@@ -9,6 +9,20 @@ import re
 from pathlib import Path
 
 
+PRIMARY_ROUTES = [
+    "native-pptx",
+    "edit-existing",
+    "template-extract",
+    "image-first",
+    "reconstruct",
+    "html-markdown",
+    "google-slides",
+    "qa-audit",
+]
+
+MODES = ["academic", "business"]
+
+
 def split_slides(markdown: str) -> list[dict]:
     lines = markdown.splitlines()
     slides: list[dict] = []
@@ -70,7 +84,8 @@ def main() -> int:
     parser.add_argument("markdown", type=Path)
     parser.add_argument("--out", type=Path, default=Path("out"))
     parser.add_argument("--title", default=None)
-    parser.add_argument("--route", default="native-pptx")
+    parser.add_argument("--route", default="native-pptx", choices=PRIMARY_ROUTES)
+    parser.add_argument("--mode", action="append", choices=MODES, default=[])
     args = parser.parse_args()
 
     text = args.markdown.read_text(encoding="utf-8")
@@ -80,6 +95,8 @@ def main() -> int:
 
     deck_brief = {
         "task_type": args.route,
+        "primary_route": args.route,
+        "modes": args.mode,
         "audience": "TBD",
         "goal": "Turn the supplied outline into an editable, QA-checked presentation.",
         "language": "auto",
@@ -93,6 +110,7 @@ def main() -> int:
     slide_plan = {
         "deck_title": deck_title,
         "route": args.route,
+        "modes": args.mode,
         "style": {"aspect_ratio": "16:9", "theme": "clean-professional"},
         "slides": slides,
     }

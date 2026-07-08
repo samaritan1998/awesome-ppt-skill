@@ -12,19 +12,19 @@ Use this file to choose the production path before building or editing a deck.
 
 ## Route Rules
 
-Choose exactly one primary route and optional secondary modes.
+Choose exactly one primary route, then add optional modes or follow-up routes when needed.
 
-| Signal | Primary route | Secondary mode |
+| Signal | Primary route | Mode / follow-up |
 | --- | --- | --- |
-| "make a PPT", "turn this into slides", source text or outline | `native-pptx` | `business` or `academic` when relevant |
-| existing `.pptx` and edit request | `edit-existing` | `qa-audit` |
-| company template, brand deck, master slides | `template-extract` | `native-pptx` |
-| screenshots, exported slide images, scanned PDF | `reconstruct` | `qa-audit` |
-| Markdown, Marp, Slidev, HTML, code talk | `html-markdown` | `native-pptx` if PPTX is required |
-| Drive, sharing, comments, online collaboration | `google-slides` | `qa-audit` |
-| paper, arXiv, thesis, experiment, method/results | `academic` | `native-pptx` |
-| pitch, board, customer, consulting, roadmap | `business` | `native-pptx` |
-| "check", "polish", "fix layout", "make editable" | `qa-audit` | route based on source format |
+| "make a PPT", "turn this into slides", source text or outline | `native-pptx` | add `business` or `academic` mode when relevant |
+| existing `.pptx` and edit request | `edit-existing` | follow with `qa-audit` |
+| company template, brand deck, master slides | `template-extract` | follow with `native-pptx` |
+| screenshots, exported slide images, scanned PDF | `reconstruct` | follow with `qa-audit` |
+| Markdown, Marp, Slidev, HTML, code talk | `html-markdown` | follow with `native-pptx` if PPTX is required |
+| Drive, sharing, comments, online collaboration | `google-slides` | follow with `qa-audit` |
+| paper, arXiv, thesis, experiment, method/results | `native-pptx` | add `academic` mode |
+| pitch, board, customer, consulting, roadmap | `native-pptx` | add `business` mode |
+| "check", "polish", "fix layout", "make editable" | `qa-audit` | inspect source format first |
 
 ## Default Decision
 

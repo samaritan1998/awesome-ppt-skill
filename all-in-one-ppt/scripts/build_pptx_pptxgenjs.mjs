@@ -1,5 +1,17 @@
 #!/usr/bin/env node
 import fs from "node:fs";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+
+function optionsFromBbox(obj, fallback) {
+  const bbox = obj && obj.bbox;
+  if (!bbox || typeof bbox !== "object") return fallback;
+  for (const key of ["x", "y", "w", "h"]) {
+    if (typeof bbox[key] !== "number") return fallback;
+  }
+  return { ...fallback, x: bbox.x, y: bbox.y, w: bbox.w, h: bbox.h };
+}
 
 async function main() {
   const planPath = process.argv[2];
@@ -11,9 +23,10 @@ async function main() {
 
   let pptxgenjs;
   try {
-    pptxgenjs = await import("pptxgenjs");
-  } catch {
-    console.error("Missing dependency: npm install pptxgenjs");
+    pptxgenjs = require("pptxgenjs");
+  } catch (error) {
+    console.error("Missing or unusable dependency: npm install pptxgenjs");
+    console.error(error.message);
     process.exit(2);
   }
 
@@ -61,7 +74,7 @@ async function main() {
     let y = 1.65;
     for (const obj of slidePlan.objects || []) {
       if (obj.type === "bullets" && Array.isArray(obj.content)) {
-        slide.addText(obj.content.map((text) => ({ text, options: { bullet: { type: "ul" } } })), {
+        slide.addText(obj.content.map((text) => ({ text, options: { bullet: { type: "ul" } } })), optionsFromBbox(obj, {
           x: 0.75,
           y,
           w: 11.4,
@@ -70,14 +83,14 @@ async function main() {
           color: "111827",
           breakLine: false,
           fit: "shrink"
-        });
+        }));
         y += 2.4;
       } else if (obj.type === "image" && typeof obj.content === "string" && fs.existsSync(obj.content)) {
-        slide.addImage({ path: obj.content, x: 0.8, y, w: 5.5, h: 3.1 });
+        slide.addImage(optionsFromBbox(obj, { path: obj.content, x: 0.8, y, w: 5.5, h: 3.1 }));
         y += 3.35;
       } else {
         const content = typeof obj.content === "string" ? obj.content : JSON.stringify(obj.content, null, 2);
-        slide.addText(content, {
+        slide.addText(content, optionsFromBbox(obj, {
           x: 0.75,
           y,
           w: 11.4,
@@ -86,7 +99,7 @@ async function main() {
           color: "111827",
           fit: "shrink",
           margin: 0.05
-        });
+        }));
         y += 1.35;
       }
     }

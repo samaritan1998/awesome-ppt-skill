@@ -19,6 +19,24 @@
         "qa-audit"
       ]
     },
+    "primary_route": {
+      "type": "string",
+      "enum": [
+        "native-pptx",
+        "edit-existing",
+        "template-extract",
+        "image-first",
+        "reconstruct",
+        "html-markdown",
+        "google-slides",
+        "qa-audit"
+      ]
+    },
+    "modes": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["academic", "business"] },
+      "uniqueItems": true
+    },
     "audience": { "type": "string" },
     "goal": { "type": "string" },
     "language": { "type": "string", "default": "auto" },

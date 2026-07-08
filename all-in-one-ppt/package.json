@@ -1,0 +1,20 @@
+{
+  "name": "all-in-one-ppt-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "All-in-One PPT Agent Skill utilities for planning, QA, preview, and optional PPTX generation.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:pptx": "node scripts/build_pptx_pptxgenjs.mjs",
+    "smoke:plan": "python3 scripts/plan_from_markdown.py ../examples/ppt_skill_research_outline.md --out ../out/demo",
+    "smoke:validate": "python3 scripts/validate_plan.py ../out/demo/slide_plan.json --brief ../out/demo/deck_brief.json",
+    "smoke:qa": "python3 scripts/qa_report.py ../out/demo/slide_plan.json --out ../out/demo/qa_report.json",
+    "smoke:preview": "python3 scripts/html_preview.py ../out/demo/slide_plan.json --out ../out/demo/preview.html"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}
