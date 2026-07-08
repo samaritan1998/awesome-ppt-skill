@@ -1,8 +1,10 @@
-# All-in-One PPT Skill
+# Awesome PPT Skill
 
 An Agent Skill for planning, building, editing, reconstructing, QA-checking, and repairing PowerPoint / PPTX / Slides decks.
 
 The main design decision is simple: default to editable PPTX, keep a structured `slide_plan.json`, render before delivery, and run QA before handing off the deck.
+
+This repository is intentionally named `awesome-ppt-skill` because it combines PPT Skill research with a concrete All-in-One Skill. It is different from `stevenjinlong/awesome-ppt-skills`: that project is a strong image-first PPT generation and editable-reconstruction reference; this project is an upper-level Agent Skill router for native PPTX, editing, reconstruction, HTML/Markdown, Google Slides, academic/business modes, and QA repair.
 
 ## What Is Included
 
@@ -45,6 +47,6 @@ node scripts/build_pptx_pptxgenjs.mjs /tmp/aio-ppt-demo/slide_plan.json /tmp/aio
 
 ## Suggested Repository Name
 
-`samaritan1998/all-in-one-ppt-skill`
+`samaritan1998/awesome-ppt-skill`
 
 The current environment did not have permission to create a new GitHub repository automatically, so this directory is prepared as a GitHub-ready repo.
