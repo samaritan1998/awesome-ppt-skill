@@ -9,42 +9,6 @@
 
 ## PPT Skill 列表
 
-整理日期：2026-07-08
-
-来源对话：[ChatGPT 调研窗口](https://chatgpt.com/c/6a4de5f8-eedc-83ee-99a5-557c0a34e336)
-
-筛选口径：只保留明确指向 PPT / PowerPoint / PPTX / Slides / Presentation / Deck 的具体 Skill 或 Skill 仓库；剔除泛索引站、泛 Office 工具、泛写作/图表工具和非 PPT 专项资源。
-
-总数：121
-
-### 分类统计
-
-| 分类 | 数量 |
-| --- | ---: |
-| HTML/Markdown Slides | 39 |
-| PPTX 创建/编辑 | 19 |
-| PPT 设计 | 13 |
-| 学术/论文 PPT | 12 |
-| PPT 生成 | 11 |
-| 图像/PDF 转 PPT | 9 |
-| 官方/核心 | 5 |
-| 商业/Deck | 4 |
-| 质量检查 | 3 |
-| Google Slides | 3 |
-| 可编辑 PPT | 2 |
-| LibreOffice Impress | 1 |
-
-### 优先级统计
-
-| 优先级 | 数量 |
-| --- | ---: |
-| 可看 | 53 |
-| 优先 | 45 |
-| 强烈优先 | 22 |
-| 审计 | 1 |
-
-### 完整列表
-
 | # | Skill | 分类 | 描述 | 入口类型 | 优先级 |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | [OpenAI slides](https://mcpservers.org/agent-skills/openai/slides) | 官方/核心 | OpenAI slides Agent Skill：创建和编辑 .pptx slide decks，基于 PptxGenJS 与渲染/校验工具。 | Agent Skill 页面 | 强烈优先 |
