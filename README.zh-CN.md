@@ -1,38 +1,37 @@
 # Awesome PPT Skill
 
-[中文文档](README.zh-CN.md)
+[English](README.md) | 中文
 
-An Agent Skill for planning, building, editing, reconstructing, QA-checking, and repairing PowerPoint / PPTX / Slides decks.
+一个用于规划、生成、编辑、重建、QA 检查和修复 PowerPoint / PPTX / Slides 的 Agent Skill。
 
-The main design decision is simple: default to editable PPTX, keep a structured `slide_plan.json`, render before delivery, and run QA before handing off the deck.
+核心设计很简单：默认生成可编辑 PPTX，保留结构化 `slide_plan.json`，交付前必须渲染预览并跑 QA。
 
-This repository is intentionally named `awesome-ppt-skill` because it combines PPT Skill research with a concrete All-in-One Skill. It is different from `stevenjinlong/awesome-ppt-skills`: that project is a strong image-first PPT generation and editable-reconstruction reference; this project is an upper-level Agent Skill router for native PPTX, editing, reconstruction, HTML/Markdown, Google Slides, academic/business modes, and QA repair.
+这个仓库叫 `awesome-ppt-skill`，因为它同时包含 PPT Skill 调研和一个具体的 All-in-One Skill。它和 `stevenjinlong/awesome-ppt-skills` 的定位不同：后者是很强的 image-first PPT 生成和可编辑重建参考；本仓库更偏上层 Agent Skill 路由，覆盖原生 PPTX、编辑已有 PPT、图片/PDF 重建、HTML/Markdown、Google Slides、学术/商业模式和 QA 修复闭环。
 
-## What Is Included
+## 包含内容
 
-- `all-in-one-ppt/SKILL.md`: compact agent instructions and route selection.
-- `all-in-one-ppt/references/`: router, workflows, QA checklist, design system, academic mode, business mode, and security notes.
-- `all-in-one-ppt/schemas/`: `deck_brief.schema.json` and `slide_plan.schema.json`.
-- `all-in-one-ppt/scripts/`: small utilities for planning, QA, preview, and optional PptxGenJS generation.
-- `research/ppt_skill_list_2026_07_08.md`: strict list of 121 PPT / Slides Skills with links, descriptions, categories, entry types, and priorities.
-- `research/ppt_skill_list_2026_07_08.csv`: spreadsheet-friendly version of the same list.
-- `research/ppt_skill_list_2026_07_08.json`: machine-readable version of the same list.
-- `research/ppt_skill_research_summary.md`: summary of the PPT Skill research that motivated this design.
+- `all-in-one-ppt/SKILL.md`：紧凑版 Agent 指令和路由策略。
+- `all-in-one-ppt/references/`：路由、工作流、QA 清单、设计系统、学术模式、商业模式和安全说明。
+- `all-in-one-ppt/schemas/`：`deck_brief.schema.json` 和 `slide_plan.schema.json`。
+- `all-in-one-ppt/scripts/`：用于生成 plan、QA、HTML 预览和可选 PptxGenJS 构建的小工具。
+- `research/ppt_skill_list_2026_07_08.md`：121 个 PPT / Slides Skill 的严格调研清单。
+- `research/ppt_skill_list_2026_07_08.csv`：适合表格软件使用的版本。
+- `research/ppt_skill_list_2026_07_08.json`：适合程序读取的版本。
+- `research/ppt_skill_research_summary.md`：调研摘要。
 
-<!-- PPT_SKILL_LIST_START -->
-## PPT Skill Research List
+## PPT Skill 调研清单
 
-Date: 2026-07-08
+整理日期：2026-07-08
 
-Source conversation: https://chatgpt.com/c/6a4de5f8-eedc-83ee-99a5-557c0a34e336
+来源对话：https://chatgpt.com/c/6a4de5f8-eedc-83ee-99a5-557c0a34e336
 
-This list is the strict-filtered version of the PPT Skill research. It keeps only concrete PPT / PowerPoint / PPTX / Slides / Presentation / Deck Agent Skill, Claude Skill, Codex Skill, SKILL.md, GitHub skill repository, or marketplace skill pages. Generic indexes, broad Office helpers, broad writing/chart tools, and non-PPT resources were removed.
+筛选口径：只保留明确指向 PPT / PowerPoint / PPTX / Slides / Presentation / Deck 的 Agent Skill、Claude Skill、Codex Skill、`SKILL.md`、GitHub Skill 仓库或具体 marketplace Skill 页面。泛索引站、泛 Office 工具、泛写作/图表工具和非 PPT 专项资源都已剔除。
 
-Total entries: 121
+总数：121
 
-### Category Counts
+### 分类统计
 
-| Category | Count |
+| 分类 | 数量 |
 | --- | ---: |
 | HTML/Markdown Slides | 39 |
 | PPTX 创建/编辑 | 19 |
@@ -42,23 +41,23 @@ Total entries: 121
 | 图像/PDF 转 PPT | 9 |
 | 官方/核心 | 5 |
 | 商业/Deck | 4 |
-| Google Slides | 3 |
 | 质量检查 | 3 |
+| Google Slides | 3 |
 | 可编辑 PPT | 2 |
 | LibreOffice Impress | 1 |
 
-### Priority Counts
+### 优先级统计
 
-| Priority | Count |
+| 优先级 | 数量 |
 | --- | ---: |
 | 可看 | 53 |
 | 优先 | 45 |
 | 强烈优先 | 22 |
 | 审计 | 1 |
 
-### Full List
+### 完整列表
 
-| # | Skill | Category | Description | Entry Type | Priority |
+| # | Skill | 分类 | 描述 | 入口类型 | 优先级 |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | [OpenAI slides](https://mcpservers.org/agent-skills/openai/slides) | 官方/核心 | OpenAI slides Agent Skill：创建和编辑 .pptx slide decks，基于 PptxGenJS 与渲染/校验工具。 | Agent Skill 页面 | 强烈优先 |
 | 2 | [Anthropic pptx](https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md) | 官方/核心 | Anthropic 官方 PPTX Skill：创建、编辑、分析 .pptx，含模板、布局、speaker notes、视觉 QA。 | GitHub SKILL.md | 强烈优先 |
@@ -182,28 +181,27 @@ Total entries: 121
 | 120 | [next-slide](https://github.com/codesstar/next-slide) | HTML/Markdown Slides | AI-powered HTML presentations，26+ styles，zero dependencies，bilingual。 | GitHub repo | 可看 |
 | 121 | [slide](https://github.com/phodal/routa/blob/main/tools/office-skills/.agents/skills/slide/SKILL.md) | PPTX 创建/编辑 | phodal/routa office skills 中的 slide/SKILL.md：用 PptxGenJS 创建/编辑 presentation slide decks。 | GitHub SKILL.md | 可看 |
 
-### Machine-Readable Files
+### 机器可读文件
 
-- CSV: `research/ppt_skill_list_2026_07_08.csv`
-- JSON: `research/ppt_skill_list_2026_07_08.json`
-<!-- PPT_SKILL_LIST_END -->
+- CSV：`research/ppt_skill_list_2026_07_08.csv`
+- JSON：`research/ppt_skill_list_2026_07_08.json`
 
-## Install
+## 安装
 
-Copy `all-in-one-ppt/` into your Codex skills directory:
+把 `all-in-one-ppt/` 复制到 Codex skills 目录：
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R all-in-one-ppt "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
-Then ask:
+然后可以这样调用：
 
 ```text
 Use $all-in-one-ppt to turn this report into an editable, QA-checked PPTX.
 ```
 
-## Quick Local Test
+## 本地快速测试
 
 ```bash
 cd all-in-one-ppt
@@ -212,7 +210,7 @@ python3 scripts/qa_report.py /tmp/aio-ppt-demo/slide_plan.json
 python3 scripts/html_preview.py /tmp/aio-ppt-demo/slide_plan.json --out /tmp/aio-ppt-demo/preview.html
 ```
 
-Optional PPTX build:
+可选 PPTX 构建：
 
 ```bash
 npm install pptxgenjs
