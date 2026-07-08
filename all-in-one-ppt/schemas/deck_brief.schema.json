@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "All-in-One PPT Deck Brief",
+  "type": "object",
+  "required": ["task_type", "audience", "goal", "output", "editability"],
+  "properties": {
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "native-pptx",
+        "edit-existing",
+        "template-extract",
+        "image-first",
+        "reconstruct",
+        "html-markdown",
+        "google-slides",
+        "academic",
+        "business",
+        "qa-audit"
+      ]
+    },
+    "audience": { "type": "string" },
+    "goal": { "type": "string" },
+    "language": { "type": "string", "default": "auto" },
+    "page_count": { "type": ["integer", "string"], "default": "auto" },
+    "tone": { "type": "string", "default": "clear and professional" },
+    "output": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["pptx", "pdf", "png", "html", "google-slides", "slide_plan", "qa_report"] },
+      "minItems": 1
+    },
+    "editability": {
+      "type": "string",
+      "enum": ["native-first", "image-first-ok", "image-only-ok", "not-specified"],
+      "default": "native-first"
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "template_path": { "type": "string" },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "fonts": { "type": "array", "items": { "type": "string" } },
+        "logo_path": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path_or_url", "kind"],
+        "properties": {
+          "path_or_url": { "type": "string" },
+          "kind": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "constraints": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

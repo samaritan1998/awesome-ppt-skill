@@ -1,0 +1,4 @@
+interface:
+  display_name: "All-in-One PPT"
+  short_description: "Plan, build, edit, QA, and repair PPT decks"
+  default_prompt: "Use $all-in-one-ppt to create an editable, QA-checked PowerPoint deck from this brief."
