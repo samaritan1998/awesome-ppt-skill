@@ -12,7 +12,10 @@ This repository is intentionally named `awesome-ppt-skill` because it combines P
 - `all-in-one-ppt/references/`: router, workflows, QA checklist, design system, academic mode, business mode, and security notes.
 - `all-in-one-ppt/schemas/`: `deck_brief.schema.json` and `slide_plan.schema.json`.
 - `all-in-one-ppt/scripts/`: small utilities for planning, QA, preview, and optional PptxGenJS generation.
-- `research/`: summary of the PPT Skill research that motivated this design.
+- `research/ppt_skill_list_2026_07_08.md`: strict list of 121 PPT / Slides Skills with links, descriptions, categories, entry types, and priorities.
+- `research/ppt_skill_list_2026_07_08.csv`: spreadsheet-friendly version of the same list.
+- `research/ppt_skill_list_2026_07_08.json`: machine-readable version of the same list.
+- `research/ppt_skill_research_summary.md`: summary of the PPT Skill research that motivated this design.
 
 ## Install
 

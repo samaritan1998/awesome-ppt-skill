@@ -1,0 +1,1099 @@
+{
+  "title": "PPT Skill strict research list",
+  "date": "2026-07-08",
+  "source_conversation": "https://chatgpt.com/c/6a4de5f8-eedc-83ee-99a5-557c0a34e336",
+  "source_file": "ppt_skill_only_2026_07_08.html",
+  "filter": "Only concrete PPT / PowerPoint / PPTX / Slides / Presentation / Deck Agent Skill, Claude Skill, Codex Skill, SKILL.md, GitHub skill repository, or marketplace skill pages. Generic indexes and broad non-PPT helper tools are excluded.",
+  "count": 121,
+  "rows": [
+    {
+      "id": 1,
+      "name": "OpenAI slides",
+      "url": "https://mcpservers.org/agent-skills/openai/slides",
+      "category": "官方/核心",
+      "description": "OpenAI slides Agent Skill：创建和编辑 .pptx slide decks，基于 PptxGenJS 与渲染/校验工具。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 2,
+      "name": "Anthropic pptx",
+      "url": "https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md",
+      "category": "官方/核心",
+      "description": "Anthropic 官方 PPTX Skill：创建、编辑、分析 .pptx，含模板、布局、speaker notes、视觉 QA。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 3,
+      "name": "Anthropic ppt-template-creator",
+      "url": "https://mcpservers.org/agent-skills/anthropic/ppt-template-creator",
+      "category": "官方/核心",
+      "description": "把用户提供的 PowerPoint 模板转成可复用的 PPT 模板 Skill。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 4,
+      "name": "Anthropic pptx-author",
+      "url": "https://mcpservers.org/agent-skills/anthropic/pptx-author",
+      "category": "官方/核心",
+      "description": "在无 PowerPoint GUI 的托管 Agent 环境中，直接在磁盘生成 .pptx 文件。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 5,
+      "name": "Anthropic pitch-deck",
+      "url": "https://mcpservers.org/agent-skills/anthropic/pitch-deck",
+      "category": "商业/Deck",
+      "description": "投资银行 pitch deck 模板填充、格式校验和数据叙事一致性工作流。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "优先"
+    },
+    {
+      "id": 6,
+      "name": "Anthropic ib-check-deck",
+      "url": "https://mcpservers.org/agent-skills/anthropic/ib-check-deck",
+      "category": "质量检查",
+      "description": "投行/客户展示 deck 质量检查，关注跨页数字一致性、数据叙事、格式问题。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "优先"
+    },
+    {
+      "id": 7,
+      "name": "Microsoft powerpoint",
+      "url": "https://mcpservers.org/agent-skills/microsoft/powerpoint",
+      "category": "官方/核心",
+      "description": "Microsoft hve-core 的 PowerPoint Skill：用 python-pptx 和 YAML 内容/样式定义生成、更新、管理 deck。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 8,
+      "name": "Microsoft customer-card-render",
+      "url": "https://mcpservers.org/agent-skills/microsoft/customer-card-render",
+      "category": "商业/Deck",
+      "description": "把 Design Thinking canonical artifacts 映射成 PowerPoint slide YAML，并调用 PowerPoint skill pipeline 构建 deck。",
+      "entry_type": "Agent Skill 页面",
+      "priority": "可看"
+    },
+    {
+      "id": 9,
+      "name": "Google Workspace gws-slides",
+      "url": "https://github.com/googleworkspace/cli/blob/main/skills/gws-slides/SKILL.md",
+      "category": "Google Slides",
+      "description": "Google Workspace CLI 的 gws-slides Skill：读写 Google Slides presentations。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 10,
+      "name": "Google Workspace recipe-create-presentation",
+      "url": "https://github.com/googleworkspace/cli/blob/main/skills/recipe-create-presentation/SKILL.md",
+      "category": "Google Slides",
+      "description": "Google Slides 创建演示文稿 recipe：创建 presentation、获取 ID、分享权限等流程。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 11,
+      "name": "Google Slides Automation",
+      "url": "https://github.com/sickn33/antigravity-awesome-skills/blob/main/plugins/antigravity-bundle-documents-presentations/skills/google-slides-automation/SKILL.md",
+      "category": "Google Slides",
+      "description": "本地自动化创建、检查和修改 Google Slides presentations。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "优先"
+    },
+    {
+      "id": 12,
+      "name": "awesome-claude-skills / pptx",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills/blob/master/document-skills/pptx/SKILL.md?plain=1",
+      "category": "PPTX 创建/编辑",
+      "description": "通用 PowerPoint / PPTX 创建、编辑、分析 Skill，直接指向 document-skills/pptx/SKILL.md。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 13,
+      "name": "claude-cortex / pptx",
+      "url": "https://awesomeskill.ai/skill/claude-cortex-pptx",
+      "category": "PPTX 创建/编辑",
+      "description": "PPTX 创建、编辑、分析 Skill 的直接页面，可查看 SKILL.md 与安装方式。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 14,
+      "name": "ai-agent-skills / pptx",
+      "url": "https://awesomeskill.ai/skill/ai-agent-skills-pptx",
+      "category": "PPTX 创建/编辑",
+      "description": "使用 python-pptx 风格的通用 PPTX Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 15,
+      "name": "cam10001110101 / pptx",
+      "url": "https://lobehub.com/skills/cam10001110101-claude-skills-base-pptx",
+      "category": "PPTX 创建/编辑",
+      "description": "PPTX creation/editing/analysis Skill 的镜像 Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 16,
+      "name": "tfriedel / claude-office-skills / pptx",
+      "url": "https://lobehub.com/vi-VN/skills/tfriedel-claude-office-skills-pptx",
+      "category": "PPTX 创建/编辑",
+      "description": "Office 技能集中的 PowerPoint/PPTX Skill，支持 scratch/template/HTML-to-PPTX 工作流。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 17,
+      "name": "davila7 / pptx-official",
+      "url": "https://github.com/davila7/claude-code-templates/blob/main/cli-tool/components/skills/document-processing/pptx-official/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "Claude Code templates 中的 pptx-official Skill，触发 deck、slides、presentation、.pptx 场景。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "优先"
+    },
+    {
+      "id": 18,
+      "name": "enuno / pptx skill template",
+      "url": "https://github.com/enuno/claude-command-and-control/blob/main/skills-templates/document-skills/pptx/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "Claude command/control 模板中的 document-skills/pptx Skill。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "可看"
+    },
+    {
+      "id": 19,
+      "name": "pptx-manipulation",
+      "url": "https://awesomeskill.ai/skill/claude-office-skills-skills-pptx-manipulation",
+      "category": "PPTX 创建/编辑",
+      "description": "基于 python-pptx 的 PPTX 创建、修改、提取内容 Skill。",
+      "entry_type": "Marketplace Skill",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 20,
+      "name": "pptx-generator",
+      "url": "https://github.com/MiniMax-AI/skills/blob/main/skills/pptx-generator/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "MiniMax-AI 的 PPTX Generator & Editor：PptxGenJS 创建、XML 编辑、markitdown 提取。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 21,
+      "name": "PptxGenJS Slide Making Skill",
+      "url": "https://github.com/MiniMax-AI/skills/blob/main/plugins/pptx-plugin/skills/slide-making-skill/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "MiniMax-AI 插件中的原生 .pptx slide-making Skill，专注 PptxGenJS。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 22,
+      "name": "documents-pptx",
+      "url": "https://awesomeskill.ai/skill/dotfiles-pptx",
+      "category": "PPTX 创建/编辑",
+      "description": "围绕 PPTX、OOXML、html2pptx 的文档生成 Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 23,
+      "name": "pptx-from-layouts-skill",
+      "url": "https://github.com/tristan-mcinnis/pptx-from-layouts-skill",
+      "category": "PPTX 创建/编辑",
+      "description": "使用 PowerPoint 模板 slide master/layout，从 Markdown 生成咨询级 PPTX。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 24,
+      "name": "presentation-skill / pptx-skill",
+      "url": "https://github.com/sirilsengolraj-source/pptx-skill",
+      "category": "PPTX 创建/编辑",
+      "description": "把 deck 当代码：结构化源文件 → editable PowerPoint decks → QA loop。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 25,
+      "name": "PowerPoint Slides Skill",
+      "url": "https://github.com/Noi1r/powerpoint-skill",
+      "category": "PPTX 创建/编辑",
+      "description": "Noi1r 的 PowerPoint skill：从论文、笔记、结构化内容生成富视觉 .pptx，含数学公式和图表管线。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 26,
+      "name": "ClaudePowerPointSkill",
+      "url": "https://github.com/PeterKalmstrom/ClaudePowerPointSkill",
+      "category": "PPTX 创建/编辑",
+      "description": "面向 Claude 的 PowerPoint Skill 社区仓库。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 27,
+      "name": "powerpoint-skill",
+      "url": "https://github.com/Shimonimposed141/powerpoint-skill",
+      "category": "PPTX 创建/编辑",
+      "description": "PowerPoint 创建/处理方向社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 28,
+      "name": "bruce-pptx-generator",
+      "url": "https://github.com/bruc3van/bruce-pptx-generator",
+      "category": "PPTX 创建/编辑",
+      "description": "PPTX 生成社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 29,
+      "name": "OpenClaw Medical pptx",
+      "url": "https://github.com/FreedomIntelligence/OpenClaw-Medical-Skills/blob/main/skills/pptx/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "OpenClaw Medical Skills 中的 pptx/SKILL.md，面向医疗/科研类 PPTX 工作流。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "可看"
+    },
+    {
+      "id": 30,
+      "name": "codex-ppt-skill",
+      "url": "https://github.com/ningzimu/codex-ppt-skill",
+      "category": "PPT 生成",
+      "description": "Codex PPT skill：从文章、报告、论文、笔记、大纲生成视觉统一 PPT/PPTX。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 31,
+      "name": "qybaihe / codex-ppt",
+      "url": "https://github.com/qybaihe/codex-ppt",
+      "category": "PPT 生成",
+      "description": "Codex Skill：image mode 与 editable PPTX mode 两种路径，先生成 slide image，再重建可编辑 PowerPoint。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 32,
+      "name": "awesome-ppt-skills",
+      "url": "https://github.com/stevenjinlong/awesome-ppt-skills",
+      "category": "PPT 生成",
+      "description": "Awesome PPT Codex Skill：image-first presentation generation，并可配合 ppt-master 生成 editable PPTX。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 33,
+      "name": "editable-leadership-pptx",
+      "url": "https://github.com/CamelKing1997/editable-leadership-pptx",
+      "category": "商业/Deck",
+      "description": "Codex PPT Skill：生成 editable leadership、executive、project update .pptx。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 34,
+      "name": "ppt-master",
+      "url": "https://github.com/hugohe3/ppt-master/blob/main/skills/ppt-master/SKILL.md",
+      "category": "PPT 生成",
+      "description": "生成真实、可编辑 PowerPoint 的 PPT Master Skill，强调 native shapes、charts、speaker notes、QA。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 35,
+      "name": "guizang-ppt-skill",
+      "url": "https://github.com/op7418/guizang-ppt-skill",
+      "category": "PPT 生成",
+      "description": "归藏 PPT Skill：中文社区高星 HTML/PPT 风格 deck 生成。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 36,
+      "name": "future-ppt-skill",
+      "url": "https://github.com/TonyLTalentexe/future-ppt-skill",
+      "category": "PPT 生成",
+      "description": "Codex Skill：通过设计契约、SVG 输出、PPTX 导出和 QA report 生成 editable PowerPoint。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 37,
+      "name": "ppt-agent-skills",
+      "url": "https://github.com/Hafiz3369/ppt-agent-skills",
+      "category": "PPT 生成",
+      "description": "围绕 PPT 生成/编辑的 Agent Skills 集合。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 38,
+      "name": "codex-visual-ppt-deck-builder",
+      "url": "https://github.com/DwDestiny/codex-visual-ppt-deck-builder",
+      "category": "PPT 生成",
+      "description": "Codex 视觉型 PPT deck 构建 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 39,
+      "name": "ppt-deck-builder-skill",
+      "url": "https://github.com/Richard-2718/ppt-deck-builder-skill",
+      "category": "PPT 生成",
+      "description": "PPT deck builder 社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 40,
+      "name": "PPT-builder-textbook",
+      "url": "https://github.com/FangCD-zju/PPT-builder-textbook",
+      "category": "PPT 生成",
+      "description": "教材/文本转 PPT 的 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 41,
+      "name": "nanobanana-ppt",
+      "url": "https://awesomeskill.ai/skill/nanobanana-ppt-skills-",
+      "category": "PPT 生成",
+      "description": "PPT Generator Pro Skill；公开索引曾标注高风险，建议只做审计观察，不要直接安装。",
+      "entry_type": "Marketplace Skill",
+      "priority": "审计"
+    },
+    {
+      "id": 42,
+      "name": "ai-editable-ppt-skill",
+      "url": "https://github.com/iwbaga724-Hinda/ai-editable-ppt-skill",
+      "category": "可编辑 PPT",
+      "description": "AI 生成可编辑 PPT 的社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 43,
+      "name": "editable-pptx-skill",
+      "url": "https://github.com/Liuguanyi2125/editable-pptx-skill",
+      "category": "可编辑 PPT",
+      "description": "可直接放入 Codex / Claude skills 目录的分层可编辑 PPTX Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 44,
+      "name": "image-to-editable-ppt-skill",
+      "url": "https://github.com/ningzimu/image-to-editable-ppt-skill",
+      "category": "图像/PDF 转 PPT",
+      "description": "将 slide images、PDF、image-based PPTX 转成 editable PowerPoint decks 的 Codex Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 45,
+      "name": "slide-image-to-editable-pptx",
+      "url": "https://github.com/w1163222589-coder/slide-image-to-editable-pptx",
+      "category": "图像/PDF 转 PPT",
+      "description": "将 slide screenshots 转成 editable PowerPoint decks 的 Codex Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 46,
+      "name": "EditableImage2PPTSkill",
+      "url": "https://github.com/soulmujoco/EditableImage2PPTSkill",
+      "category": "图像/PDF 转 PPT",
+      "description": "从 slide screenshots 或 exported slide images 重建 editable PowerPoint decks。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 47,
+      "name": "knight-imagetopptx-skill",
+      "url": "https://github.com/knight6669/knight-imagetopptx-skill",
+      "category": "图像/PDF 转 PPT",
+      "description": "图片到 PPTX 的转换/重建 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 48,
+      "name": "gpt-image-ppt-creator-skill",
+      "url": "https://github.com/LueXxxxxxx/gpt-image-ppt-creator-skill",
+      "category": "图像/PDF 转 PPT",
+      "description": "结合图像生成与 PPT 组装的 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 49,
+      "name": "gpt-image2-ppt-skills",
+      "url": "https://github.com/JuneYaooo/gpt-image2-ppt-skills",
+      "category": "图像/PDF 转 PPT",
+      "description": "从 GPT 图像/素材到 PPT 的生成 Skills 集合。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 50,
+      "name": "ppt-image-workflow",
+      "url": "https://github.com/realfamousfrog-pixel/ppt-image-workflow",
+      "category": "图像/PDF 转 PPT",
+      "description": "PPT 图片生成、嵌入、工作流 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 51,
+      "name": "ppt-image-share-builder",
+      "url": "https://github.com/uuoov/ppt-image-share-builder",
+      "category": "图像/PDF 转 PPT",
+      "description": "构建可分享图片式 PPT/演示素材的 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 52,
+      "name": "imagegen-scene-ppt",
+      "url": "https://github.com/jojoxiaocai/imagegen-scene-ppt",
+      "category": "图像/PDF 转 PPT",
+      "description": "用图像生成场景辅助构建 PPT 的 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 53,
+      "name": "ppt-visual",
+      "url": "https://awesomeskill.ai/skill/claude-office-skills-skills-ppt-visual",
+      "category": "PPT 设计",
+      "description": "为 PPT/Slides 提供视觉布局、颜色、字体、图标、线框和 before/after 设计指导。",
+      "entry_type": "Marketplace Skill",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 54,
+      "name": "elite-powerpoint-designer",
+      "url": "https://awesomeskill.ai/skill/willem4130-claude-code-skills-elite-powerpoint-designer",
+      "category": "PPT 设计",
+      "description": "专业 PowerPoint 设计 Skill：品牌一致性、视觉层级、动画、Markdown 转专业 PPT。",
+      "entry_type": "Marketplace Skill",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 55,
+      "name": "PPT-Design-Skill",
+      "url": "https://github.com/billLiao/PPT-Design-Skill",
+      "category": "PPT 设计",
+      "description": "融合多种 PPT 设计风格，直接生成 PPT 文件而不是 HTML。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 56,
+      "name": "Mck-ppt-design-skill",
+      "url": "https://github.com/likaku/Mck-ppt-design-skill",
+      "category": "PPT 设计",
+      "description": "麦肯锡/BCG 风格 PPT 设计系统：layout patterns、flat design、python-pptx。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 57,
+      "name": "PPT-Design-DNA",
+      "url": "https://github.com/dakjdakd/PPT-Design-DNA",
+      "category": "PPT 设计",
+      "description": "围绕 PPT 设计 DNA、风格与版式的 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 58,
+      "name": "polished-ppt-skill",
+      "url": "https://github.com/jiadong111-debug/polished-ppt-skill",
+      "category": "PPT 设计",
+      "description": "PPT 打磨、美化、专业化处理 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 59,
+      "name": "PPT Design Style System",
+      "url": "https://mcpmarket.com/tools/skills/ppt-design-style-system",
+      "category": "PPT 设计",
+      "description": "四种 PowerPoint design recipes：Sharp、Soft、Rounded、Pill，针对 PptxGenJS token 化设计。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 60,
+      "name": "KingDee-PPT-Skill",
+      "url": "https://github.com/WayneZhon/KingDee-PPT-Skill",
+      "category": "PPT 设计",
+      "description": "金蝶官方风格 .pptx / HTML 幻灯片 Skill，复刻企业模板语言。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 61,
+      "name": "huawei-style-ppt-skill",
+      "url": "https://github.com/zuiho-kai/huawei-style-ppt-skill",
+      "category": "PPT 设计",
+      "description": "华为风高密度信息 PPT 制作工作流 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 62,
+      "name": "Powerpoint-fancy-design",
+      "url": "https://github.com/Phlegonlabs/Powerpoint-fancy-design",
+      "category": "PPT 设计",
+      "description": "Markdown → styled HTML slides、PNG renders、exportable PPTX decks 的 presentation-design Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 63,
+      "name": "ppt-agent-skill",
+      "url": "https://github.com/Akxan/ppt-agent-skill",
+      "category": "PPT 设计",
+      "description": "世界级 AI presentation generator，强调样式、图表、全局视觉一致性。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 64,
+      "name": "ppt-svg-generator",
+      "url": "https://github.com/vigorX777/ppt-svg-generator",
+      "category": "PPT 设计",
+      "description": "将 Markdown 文稿转为 HTML/PDF 演示文稿，支持多预设风格和 SVG 视觉。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 65,
+      "name": "PPT-sense-deck-skill",
+      "url": "https://github.com/xhshow2025/-PPT-sense-deck-skill-",
+      "category": "PPT 设计",
+      "description": "鲸格 PPT：Codex Skill，用于高质量浏览器原生演示文稿。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 66,
+      "name": "academic-pptx-skill",
+      "url": "https://github.com/Gabberflast/academic-pptx-skill",
+      "category": "学术/论文 PPT",
+      "description": "Academic PPTX Skill：配合 Anthropic PPTX 技术生成，处理学术内容、论证结构和设计标准。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 67,
+      "name": "claude-skill-academic-ppt",
+      "url": "https://github.com/PHY041/claude-skill-academic-ppt",
+      "category": "学术/论文 PPT",
+      "description": "生成完整学术 PPT 的 Claude Code Skill，支持中英文说明。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 68,
+      "name": "scholar-ppt-cn",
+      "url": "https://github.com/deathcats4/scholar-ppt-cn",
+      "category": "学术/论文 PPT",
+      "description": "中文学术 PPT 工作流 Skill：paper-to-editable PowerPoint、planning table、mockup family、PPTX generation。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 69,
+      "name": "codex-skill-academic-slides",
+      "url": "https://github.com/FA-T-T/codex-skill-academic-slides",
+      "category": "学术/论文 PPT",
+      "description": "面向 Codex 的学术演示/论文汇报幻灯片 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 70,
+      "name": "nature-paper2ppt",
+      "url": "https://awesomeskill.ai/skill/yuan1z0825-nature-skills-nature-paper2ppt",
+      "category": "学术/论文 PPT",
+      "description": "从科学论文、preprint、PDF、abstract、figure legends 等生成中文 Nature-style PPTX。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 71,
+      "name": "literature-report-ppt-builder",
+      "url": "https://github.com/fangyuanopus/literature-report-ppt-builder",
+      "category": "学术/论文 PPT",
+      "description": "文献报告/学术汇报 PPT 构建 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 72,
+      "name": "Aut_Sci_ppt",
+      "url": "https://github.com/ShZhao27208/Aut_Sci_ppt",
+      "category": "学术/论文 PPT",
+      "description": "自动科学/学术 PPT 方向社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 73,
+      "name": "scientific-slides",
+      "url": "https://github.com/k-dense-ai/claude-scientific-writer/blob/main/skills/scientific-slides/SKILL.md",
+      "category": "学术/论文 PPT",
+      "description": "科研 presentation slides Skill，支持 research talks、conference、seminar、thesis defense 等。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "优先"
+    },
+    {
+      "id": 74,
+      "name": "scientific-slides / Kosmos",
+      "url": "https://awesomeskill.ai/skill/kosmos-scientific-slides",
+      "category": "学术/论文 PPT",
+      "description": "会议、论文、答辩等科研演示 Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 75,
+      "name": "claude-scientific-skills / scientific-slides",
+      "url": "https://awesomeskill.ai/skill/claude-scientific-skills-scientific-slides",
+      "category": "学术/论文 PPT",
+      "description": "科研演示、PowerPoint/Beamer 相关 Skill。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 76,
+      "name": "paper-slides",
+      "url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/paper-slides/SKILL.md",
+      "category": "学术/论文 PPT",
+      "description": "从论文生成 Beamer/PDF/可编辑 PPTX，含讲稿和 speaker notes。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "优先"
+    },
+    {
+      "id": 77,
+      "name": "slide-script-tex-generator",
+      "url": "https://github.com/Qrzzzz/slide-script-tex-generator",
+      "category": "学术/论文 PPT",
+      "description": "生成幻灯片脚本与 TeX/学术演示相关内容。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 78,
+      "name": "ai-slides",
+      "url": "https://awesomeskill.ai/skill/claude-office-skills-skills-ai-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "AI-powered presentation generation：从主题或大纲生成完整演示。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 79,
+      "name": "md-slides",
+      "url": "https://github.com/zl190/md-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "Markdown → slides 的 Claude Code Skill，可生成幻灯片、图示和插图。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 80,
+      "name": "dev-slides",
+      "url": "https://github.com/claude-office-skills/skills/blob/main/dev-slides/SKILL.md",
+      "category": "HTML/Markdown Slides",
+      "description": "面向技术演讲的 Slidev / developer slides Skill，可导出 PPTX。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "优先"
+    },
+    {
+      "id": 81,
+      "name": "html-to-ppt",
+      "url": "https://awesomeskill.ai/skill/claude-office-skills-skills-html-to-ppt",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML / Markdown → PowerPoint presentations，使用 Marp 工作流。",
+      "entry_type": "Marketplace Skill",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 82,
+      "name": "html-ppt-skill",
+      "url": "https://github.com/lewislulu/html-ppt-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML PPT Studio：专业 HTML presentations Skill，含 presenter mode、主题、模板、动画。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 83,
+      "name": "html-ppt",
+      "url": "https://awesomeskill.ai/skill/lewislulu-html-ppt-skill-html-ppt",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML 到 PPT/PPTX 方向的转换 Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 84,
+      "name": "Rao-HTML-to-PPT",
+      "url": "https://github.com/raoqiu29-bot/Rao-HTML-to-PPT",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML 到 PPT 工作流，适合前端式版面转演示稿。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 85,
+      "name": "html-ppt-picker",
+      "url": "https://github.com/pakco77/html-ppt-picker",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML/PPT 选择与转换相关 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 86,
+      "name": "pptx-html-fidelity-audit",
+      "url": "https://awesomeskill.ai/skill/nexu-io-open-design-pptx-html-fidelity-audit",
+      "category": "质量检查",
+      "description": "审计 HTML deck 到 PPTX 导出后的布局漂移，并辅助修复。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 87,
+      "name": "slides-skill",
+      "url": "https://github.com/whq217/slides-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "通用 slides 生成/编辑 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 88,
+      "name": "slide-wright-skill",
+      "url": "https://github.com/arifszn/slide-wright-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "Slide deck 写作/生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 89,
+      "name": "starry-slides",
+      "url": "https://github.com/StarryKit/starry-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "Starry 风格/通用 slides 生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 90,
+      "name": "high-quality-slides",
+      "url": "https://github.com/andyqiu847-ai/high-quality-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "高质量 slides 生成/设计 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 91,
+      "name": "deck-factory",
+      "url": "https://github.com/kimsh-1/deck-factory",
+      "category": "HTML/Markdown Slides",
+      "description": "演示 deck 生成工厂型 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 92,
+      "name": "build-presentation-skill",
+      "url": "https://github.com/sheli-kohan/build-presentation-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "Story-driven presentation + editable PPTX Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 93,
+      "name": "client-proposal-slide",
+      "url": "https://github.com/wan-huiyan/claude-client-proposal-slide",
+      "category": "商业/Deck",
+      "description": "客户提案/销售方案类幻灯片生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 94,
+      "name": "document-interactive-slides-skill",
+      "url": "https://github.com/wuxiao00j/document-interactive-slides-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "从文档生成交互式幻灯片/演示体验。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 95,
+      "name": "ai-native-slides",
+      "url": "https://github.com/OpenClaudex/ai-native-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "AI-native slide deck 生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 96,
+      "name": "vela-slides",
+      "url": "https://github.com/AgentiaPT/vela-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "Vela slides 生成/编辑 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 97,
+      "name": "html-slides",
+      "url": "https://github.com/mitchelfletcher11/html-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML 风格幻灯片生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 98,
+      "name": "bluedusk / html-slides",
+      "url": "https://github.com/bluedusk/html-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML slides Skill，使用 progressive disclosure，支持 PowerPoint-to-HTML 方向。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 99,
+      "name": "frontend-slides",
+      "url": "https://github.com/zarazhangrui/frontend-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "用 Claude frontend skills 创建 beautiful web slides，支持将 PPT/PPTX 转为 HTML presentations。",
+      "entry_type": "GitHub repo",
+      "priority": "强烈优先"
+    },
+    {
+      "id": 100,
+      "name": "frontend-slides-editable",
+      "url": "https://github.com/archlizheng/frontend-slides-editable",
+      "category": "HTML/Markdown Slides",
+      "description": "可编辑 HTML presentation Skill，含拖拽缩放、slide reorder、local save/export、PPTX-to-web conversion。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 101,
+      "name": "magic-slides",
+      "url": "https://github.com/lolacolafola/magic-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "Magic Slides 社区 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 102,
+      "name": "html-presentation-skill",
+      "url": "https://github.com/qaz1230sp/html-presentation-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML presentation 生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 103,
+      "name": "marp-slide",
+      "url": "https://github.com/softaworks/agent-toolkit/blob/main/skills/marp-slide/README.md",
+      "category": "HTML/Markdown Slides",
+      "description": "Marp Slide Creator：用 Marp/Marpit 创建专业演示 slides。",
+      "entry_type": "GitHub README/SKILL",
+      "priority": "优先"
+    },
+    {
+      "id": 104,
+      "name": "marp-slide-quality",
+      "url": "https://github.com/nibzard/marp-slide-quality",
+      "category": "质量检查",
+      "description": "Marp slide 质量分析 Skill，用于拆分过载 slide、简化代码示例、改善内容结构。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 105,
+      "name": "create-marp-deck",
+      "url": "https://claudemarketplaces.com/skills/omerr/claude-skills/create-marp-deck",
+      "category": "HTML/Markdown Slides",
+      "description": "结构化访谈后生成完整 Marp slide deck 的 Skill。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 106,
+      "name": "slidedown",
+      "url": "https://github.com/Viniciuscarvalho/slidedown",
+      "category": "HTML/Markdown Slides",
+      "description": "Markdown → PPTX/Slides 的 Claude Skill，含 md2pptx.js 和主题提取脚本。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 107,
+      "name": "impress",
+      "url": "https://skillsmp.com/skills/andruia-antigravity-awesome-skills-skills-libreoffice-impress-skill-md",
+      "category": "LibreOffice Impress",
+      "description": "LibreOffice Impress Skill：创建 presentation、ODP/PPTX/PDF 格式转换和 slide automation。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 108,
+      "name": "gamma-2",
+      "url": "https://lobehub.com/skills/sundial-org-awesome-openclaw-skills-gamma-2",
+      "category": "HTML/Markdown Slides",
+      "description": "Gamma 风格 presentation / PPTX 相关 Skill 页面。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 109,
+      "name": "baoyu-slide-deck",
+      "url": "https://awesomeskill.ai/skill/baoyu-skills-baoyu-slide-deck",
+      "category": "HTML/Markdown Slides",
+      "description": "宝玉社区 slide deck 生成 Skill。",
+      "entry_type": "Marketplace Skill",
+      "priority": "优先"
+    },
+    {
+      "id": 110,
+      "name": "jack-tar-deckhand",
+      "url": "https://github.com/SteveGJones/jack-tar-deckhand",
+      "category": "HTML/Markdown Slides",
+      "description": "Deckhand / 演示 deck 生成辅助 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 111,
+      "name": "presentation-creator",
+      "url": "https://claudemarketplaces.com/skills/getsentry/skills/presentation-creator",
+      "category": "HTML/Markdown Slides",
+      "description": "Sentry design system 风格的交互式 HTML slide deck 创建 Skill。",
+      "entry_type": "Marketplace Skill",
+      "priority": "可看"
+    },
+    {
+      "id": 112,
+      "name": "open-slide",
+      "url": "https://github.com/1weiho/open-slide",
+      "category": "HTML/Markdown Slides",
+      "description": "Agent-native slide framework，内置 create-slide / slide-authoring 相关 skill 工作流。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 113,
+      "name": "huashu-design",
+      "url": "https://github.com/alchaincyf/huashu-design",
+      "category": "HTML/Markdown Slides",
+      "description": "HTML-native design Skill，支持一句话生成 slide decks、HTML deck 与 editable PPTX。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 114,
+      "name": "visual-explainer",
+      "url": "https://github.com/nicobailon/visual-explainer",
+      "category": "HTML/Markdown Slides",
+      "description": "可生成 rich HTML pages 或 slide decks，适合图解、diff review、计划审计、项目复盘。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 115,
+      "name": "ppt-agent-workflow-san",
+      "url": "https://github.com/mucsbr/ppt-agent-workflow-san",
+      "category": "HTML/Markdown Slides",
+      "description": "渐进交互式 PPT 生成 Skill，含 PPT 内容规划与 HTML slide to PPTX 工作流。",
+      "entry_type": "GitHub repo",
+      "priority": "优先"
+    },
+    {
+      "id": 116,
+      "name": "future-slide-skill",
+      "url": "https://github.com/bytonylee/future-slide-skill",
+      "category": "HTML/Markdown Slides",
+      "description": "image-based 与 HTML-based AI workflows 共用的 reusable slide-generation Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 117,
+      "name": "visual-cognition-slides",
+      "url": "https://github.com/edu-ai-builders/visual-cognition-slides",
+      "category": "HTML/Markdown Slides",
+      "description": "基于认知科学与教学设计的 HTML slides 生成 Skill。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 118,
+      "name": "slide-creator",
+      "url": "https://github.com/kaisersong/slide-creator",
+      "category": "HTML/Markdown Slides",
+      "description": "Claude Code / OpenClaw Skill：生成 zero-dependency HTML presentations。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 119,
+      "name": "slide-writer",
+      "url": "https://github.com/FeeiCN/slide-writer",
+      "category": "HTML/Markdown Slides",
+      "description": "从 ideas、outlines、documents、speech drafts 生成企业 HTML presentations。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 120,
+      "name": "next-slide",
+      "url": "https://github.com/codesstar/next-slide",
+      "category": "HTML/Markdown Slides",
+      "description": "AI-powered HTML presentations，26+ styles，zero dependencies，bilingual。",
+      "entry_type": "GitHub repo",
+      "priority": "可看"
+    },
+    {
+      "id": 121,
+      "name": "slide",
+      "url": "https://github.com/phodal/routa/blob/main/tools/office-skills/.agents/skills/slide/SKILL.md",
+      "category": "PPTX 创建/编辑",
+      "description": "phodal/routa office skills 中的 slide/SKILL.md：用 PptxGenJS 创建/编辑 presentation slide decks。",
+      "entry_type": "GitHub SKILL.md",
+      "priority": "可看"
+    }
+  ]
+}

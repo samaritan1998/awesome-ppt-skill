@@ -4,6 +4,14 @@ Date: 2026-07-08
 
 The research filtered public Agent Skill / Claude Skill / Codex Skill / SKILL.md entries down to concrete PPT / PowerPoint / PPTX / Slides / Presentation / Deck skills. Generic indexes, broad writing tools, broad chart tools, and non-PPT Office automation entries were removed.
 
+Full strict list with links and descriptions:
+
+- Markdown: [`ppt_skill_list_2026_07_08.md`](ppt_skill_list_2026_07_08.md)
+- CSV: [`ppt_skill_list_2026_07_08.csv`](ppt_skill_list_2026_07_08.csv)
+- JSON: [`ppt_skill_list_2026_07_08.json`](ppt_skill_list_2026_07_08.json)
+
+Source conversation: https://chatgpt.com/c/6a4de5f8-eedc-83ee-99a5-557c0a34e336
+
 ## Filtered Set
 
 Total concrete PPT/Slides skills: 121
