@@ -1,12 +1,5 @@
 # Awesome PPT Skill
 
-这个仓库只做两件事：
-
-1. 整理一个 **PPT Skill 列表**，收集明确面向 PPT / PowerPoint / PPTX / Slides / Presentation / Deck 的 Agent Skill、Claude Skill、Codex Skill、`SKILL.md`、GitHub Skill 仓库和 marketplace Skill 页面。
-2. 基于这些 Skill 的共性，整理出一个 **集大成的 All-in-One PPT Skill**：先路由任务，再生成结构化计划，最后按可编辑 PPTX、HTML/Markdown、图片/PDF 重建、Google Slides、学术/商业模式和 QA 修复等路径执行。
-
-这不是博客，也不是泛 AI 工具索引。主线就是：**PPT Skill 列表 -> 从列表总结能力 -> All-in-One PPT Skill**。
-
 ## PPT Skill 列表
 
 | # | Skill | 分类 | 描述 | 入口类型 | 优先级 |
