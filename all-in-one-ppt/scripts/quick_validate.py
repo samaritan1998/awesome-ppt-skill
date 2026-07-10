@@ -13,9 +13,11 @@ REQUIRED_FILES = [
     "package.json",
     "agents/openai.yaml",
     "references/router.md",
+    "references/editability_contract.md",
     "references/workflows.md",
     "references/qa_checklist.md",
     "references/design_system.md",
+    "references/image_assets.md",
     "references/academic_mode.md",
     "references/business_mode.md",
     "references/security.md",
@@ -28,6 +30,7 @@ REQUIRED_FILES = [
     "scripts/html_preview.py",
     "scripts/render_pptx_preview.sh",
     "scripts/build_pptx_pptxgenjs.mjs",
+    "scripts/inspect_pptx.py",
 ]
 
 
@@ -48,8 +51,8 @@ def validate_skill_md(skill_md: Path) -> None:
     for key in ("name:", "description:"):
         if key not in front_matter:
             fail(f"SKILL.md front matter missing {key}")
-    if "# All-in-One PPT" not in body:
-        fail("SKILL.md missing # All-in-One PPT heading")
+    if "# All-in-One Editable PowerPoint" not in body:
+        fail("SKILL.md missing # All-in-One Editable PowerPoint heading")
 
 
 def validate_json(path: Path) -> None:

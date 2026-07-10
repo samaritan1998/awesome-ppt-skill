@@ -16,7 +16,7 @@
 - `research/ppt_skill_list_2026_07_08.md`
 - `research/ppt_skill_list_2026_07_08.csv`
 - `research/ppt_skill_list_2026_07_08.json`
-- `README.md` 中的统计和折叠清单
+- `README.md` 中的 PPT Skill 列表
 
 ## 改进 All-in-One Skill
 
@@ -25,6 +25,7 @@
 - 更清晰的 route selection。
 - 更可靠的 `deck_brief.json` / `slide_plan.json` 契约。
 - 更接近真实交付的 PPTX 构建、渲染和 QA。
+- 更明确的原生对象 / 图片素材边界，以及生图素材工作流。
 - 更好的 academic / business 场景规则。
 - 更安全的第三方依赖和脚本执行说明。
 
@@ -36,11 +37,7 @@ python3 all-in-one-ppt/scripts/plan_from_markdown.py examples/ppt_skill_research
 python3 all-in-one-ppt/scripts/validate_plan.py out/demo/slide_plan.json --brief out/demo/deck_brief.json
 python3 all-in-one-ppt/scripts/qa_report.py out/demo/slide_plan.json --out out/demo/qa_report.json
 python3 all-in-one-ppt/scripts/html_preview.py out/demo/slide_plan.json --out out/demo/preview.html
-```
-
-PPTX smoke test 需要 Node.js：
-
-```bash
-npm --prefix all-in-one-ppt install
+npm --prefix all-in-one-ppt ci
 node all-in-one-ppt/scripts/build_pptx_pptxgenjs.mjs out/demo/slide_plan.json out/demo/deck.pptx
+python3 all-in-one-ppt/scripts/inspect_pptx.py out/demo/deck.pptx --plan out/demo/slide_plan.json --out out/demo/pptx_report.json
 ```

@@ -1,46 +1,53 @@
 # Design System
 
-## Defaults
+## Narrative Before Decoration
 
-- Use 16:9 unless the source deck has another aspect ratio.
-- Use a consistent grid and title position.
-- Use one dominant color, one supporting color, and one accent.
-- Use text hierarchy: title, takeaway, support, caption.
-- Prefer fewer, stronger slides over dense bullet dumps.
+- Give the deck one audience, one purpose, and one coherent arc.
+- Give each slide one job and an action title that states its takeaway.
+- Put evidence next to the claim it supports.
+- Remove content that does not advance the story; move useful detail to notes or appendix slides.
 
-## Slide Anatomy
+## Layout
 
-Each slide should have:
+- Use the source deck's aspect ratio; otherwise default to 16:9.
+- Establish margins, title position, content grid, spacing scale, and footer rules once.
+- Vary slide silhouettes across the deck while preserving the same visual grammar.
+- Prefer one strong composition over repeated card grids or dashboard-like fragments.
+- Keep titles on one line when the design expects one line. Rewrite before shrinking.
+- Avoid excessive whitespace and avoid filling every available area.
 
-- One takeaway.
-- One primary visual or structural device.
-- No more than two competing focal points.
-- Enough whitespace to scan at presentation distance.
+## Typography
 
-## Charts
+- Match a supplied template. Without one, use at least 50 pt for a deck title, 32-36 pt for slide titles, 22-26 pt for subheads/callouts, and 16-20 pt for body copy.
+- Use a font available in the target environment and define a fallback.
+- Keep hierarchy visible through size, weight, color, and position rather than decorative effects.
+- Check Chinese and Latin fallback fonts together when the deck is bilingual.
 
-- Pick the chart type based on comparison, trend, composition, distribution, or flow.
-- Keep chart labels readable.
-- Avoid 3D chart effects.
-- Show source and unit when data is externally sourced.
+## Color And Brand
+
+- A supplied template or brand guide overrides defaults.
+- Use a restrained neutral base plus functional brand/accent colors.
+- Reserve strong color for emphasis, categories, or data meaning.
+- Meet readable contrast on projected displays; do not rely on subtle tint differences alone.
+
+## Charts And Tables
+
+- Choose chart form by question: comparison, trend, composition, distribution, relationship, or flow.
+- Prefer direct labels and remove nonessential chart furniture.
+- Keep units, time period, sample size, and source context visible.
+- Do not use 3D effects or decorative chart distortion.
+- Use tables only when exact lookup matters; otherwise convert the comparison into a chart or concise callouts.
+
+## Diagrams
+
+- Use native shapes for simple processes, timelines, hierarchies, and systems.
+- Create connectors before nodes when the backend's z-order requires it.
+- Keep edges behind nodes and prevent lines from crossing labels.
+- Use an illustration only when spatial, scientific, or artistic complexity cannot be expressed cleanly with native shapes.
 
 ## Images
 
-- Preserve aspect ratio.
-- Avoid low-resolution screenshots unless the task is a reconstruction.
-- Crop intentionally around the message.
-- Do not use decorative images that do not support the slide takeaway.
-
-## Editable First
-
-Use native PPT objects for:
-
-- Titles and body text.
-- Basic charts and tables.
-- Arrows, callouts, process diagrams, timelines, and simple icons.
-
-Rasterize only:
-
-- Photos and screenshots.
-- Generated illustrations.
-- Highly complex visuals where editability is not practical.
+- Every image must support a slide takeaway or the deck's visual identity.
+- Preserve aspect ratio, crop intentionally, and avoid upscaling visibly soft assets.
+- Do not reuse the same hero image on multiple slides unless it is a deliberate background system.
+- Keep image captions, annotations, citations, and labels as native text.

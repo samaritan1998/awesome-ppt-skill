@@ -1,0 +1,134 @@
+{
+  "deck_title": "Editable Native Objects Smoke Test",
+  "route": "create",
+  "modifiers": ["business"],
+  "canvas": {
+    "width": 13.333,
+    "height": 7.5,
+    "unit": "in"
+  },
+  "style": {
+    "theme": "native-object-smoke",
+    "colors": ["#111827", "#2563EB", "#10B981"],
+    "fonts": ["Aptos", "Aptos Display"],
+    "language": "en-US"
+  },
+  "assets": [],
+  "slides": [
+    {
+      "slide_no": 1,
+      "title": "Revenue grew while acquisition cost declined",
+      "purpose": "Verify native chart and table generation",
+      "takeaway": "Both objects must remain editable after export.",
+      "layout": "chart-and-table",
+      "speaker_notes": "Edit one chart value and one table cell during the smoke test.",
+      "source_refs": ["fixture-data"],
+      "objects": [
+        {
+          "id": "s1-table",
+          "type": "table",
+          "role": "evidence",
+          "content": {
+            "headers": ["Quarter", "Revenue", "CAC"],
+            "rows": [
+              ["Q1", "$2.1M", "$84"],
+              ["Q2", "$2.6M", "$76"],
+              ["Q3", "$3.2M", "$69"]
+            ]
+          },
+          "materialization": "native",
+          "editable": true,
+          "source_refs": ["fixture-data"],
+          "bbox": {"x": 0.7, "y": 1.6, "w": 5.3, "h": 4.8},
+          "style": {"font_size": 16}
+        },
+        {
+          "id": "s1-chart",
+          "type": "chart",
+          "role": "evidence",
+          "content": {
+            "chart_type": "bar",
+            "series": [
+              {
+                "name": "Revenue ($M)",
+                "labels": ["Q1", "Q2", "Q3"],
+                "values": [2.1, 2.6, 3.2]
+              }
+            ],
+            "show_legend": false,
+            "show_values": true,
+            "colors": ["2563EB"]
+          },
+          "materialization": "native",
+          "editable": true,
+          "source_refs": ["fixture-data"],
+          "bbox": {"x": 6.45, "y": 1.6, "w": 6.15, "h": 4.8},
+          "style": {}
+        }
+      ]
+    },
+    {
+      "slide_no": 2,
+      "title": "The workflow remains structurally editable",
+      "purpose": "Verify native shapes and connectors",
+      "takeaway": "Nodes can move and connector objects remain selectable.",
+      "layout": "process",
+      "speaker_notes": "Move the middle node and inspect the connector objects.",
+      "source_refs": [],
+      "objects": [
+        {
+          "id": "s2-line-1",
+          "type": "connector",
+          "role": "flow",
+          "content": {"color": "6B7280", "end_arrow": "triangle"},
+          "materialization": "native",
+          "editable": true,
+          "allow_overlap": true,
+          "bbox": {"x": 3.45, "y": 3.2, "w": 1.45, "h": 0.02},
+          "style": {}
+        },
+        {
+          "id": "s2-line-2",
+          "type": "connector",
+          "role": "flow",
+          "content": {"color": "6B7280", "end_arrow": "triangle"},
+          "materialization": "native",
+          "editable": true,
+          "allow_overlap": true,
+          "bbox": {"x": 8.4, "y": 3.2, "w": 1.45, "h": 0.02},
+          "style": {}
+        },
+        {
+          "id": "s2-node-1",
+          "type": "shape",
+          "role": "node",
+          "content": {"shape": "roundRect", "text": "Plan", "fill": "DBEAFE", "line": "2563EB"},
+          "materialization": "native",
+          "editable": true,
+          "bbox": {"x": 0.8, "y": 2.35, "w": 2.65, "h": 1.7},
+          "style": {"font_size": 22, "bold": true}
+        },
+        {
+          "id": "s2-node-2",
+          "type": "shape",
+          "role": "node",
+          "content": {"shape": "roundRect", "text": "Build", "fill": "D1FAE5", "line": "10B981"},
+          "materialization": "native",
+          "editable": true,
+          "bbox": {"x": 4.9, "y": 2.35, "w": 3.5, "h": 1.7},
+          "style": {"font_size": 22, "bold": true}
+        },
+        {
+          "id": "s2-node-3",
+          "type": "shape",
+          "role": "node",
+          "content": {"shape": "roundRect", "text": "Inspect", "fill": "FEF3C7", "line": "F59E0B"},
+          "materialization": "native",
+          "editable": true,
+          "bbox": {"x": 9.85, "y": 2.35, "w": 2.65, "h": 1.7},
+          "style": {"font_size": 22, "bold": true}
+        }
+      ]
+    }
+  ]
+}

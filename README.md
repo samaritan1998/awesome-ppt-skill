@@ -126,106 +126,87 @@
 | 120 | [next-slide](https://github.com/codesstar/next-slide) | HTML/Markdown Slides | AI-powered HTML presentations，26+ styles，zero dependencies，bilingual。 | GitHub repo | 可看 |
 | 121 | [slide](https://github.com/phodal/routa/blob/main/tools/office-skills/.agents/skills/slide/SKILL.md) | PPTX 创建/编辑 | phodal/routa office skills 中的 slide/SKILL.md：用 PptxGenJS 创建/编辑 presentation slide decks。 | GitHub SKILL.md | 可看 |
 
-## 从这些 Skill 总结出的能力图谱
+## 从列表中提炼出的能力
 
-看完上面的列表后，能看到 PPT Skill 生态并不是一个单点能力，而是几条路线的组合。一个真正好用的 PPT Agent Skill 应该吸收这些路线的优点，而不是只押注一种生成方式。
+列表中的 Skill 路线很多，但真正值得组合的能力很集中：
 
-| 能力路线 | 代表来源 | 应该吸收的能力 | 需要规避的问题 |
-| --- | --- | --- | --- |
-| 原生 PPTX 创建/编辑 | OpenAI slides、Anthropic pptx、Microsoft powerpoint、MiniMax pptx-generator | 用 PptxGenJS、python-pptx、OOXML 或 Office API 生成可编辑文本、形状、表格、图表。 | 不能只生成“看起来像 PPT”的图片；必须保留可编辑对象。 |
-| 模板/品牌复用 | ppt-template-creator、pptx-from-layouts-skill、企业风格 PPT Skill | 从参考 deck 中抽取母版、配色、字体、版式和组件。 | 不能每次重新发明设计系统，容易风格漂移。 |
-| 图片优先视觉生成 | awesome-ppt-skills、codex-ppt、guizang-ppt-skill、future-ppt-skill | 用 image-first/HTML-first 路线做高视觉探索。 | 不能把正式交付默认变成整页图片，编辑性会差。 |
-| 图片/PDF 到可编辑 PPT | image-to-editable-ppt-skill、slide-image-to-editable-pptx、EditableImage2PPTSkill | OCR、版面理解、几何重建，把不可编辑材料还原成 native objects。 | 复杂图形可能只能近似，必须做视觉对比和 QA。 |
-| HTML/Markdown Slides | html-to-ppt、html-ppt-skill、Slidev/Marp 类 Skill | 快速从 Markdown/HTML 生成网页演示或导出 PPTX。 | HTML 到 PPTX 经常有保真度漂移，不能跳过检查。 |
-| Google Slides 自动化 | gws-slides、recipe-create-presentation、Google Slides Automation | 云端协作、Drive 分享、权限管理和 Slides API。 | 只有需要协作和云端权限时才走这条路。 |
-| 学术/商业垂直场景 | academic-pptx-skill、scientific-slides、pitch-deck、ib-check-deck | 学术汇报、论文答辩、pitch deck、board update 的叙事结构和检查项。 | 场景规则不能和底层构建路线混在一起。 |
-| QA/修复 | ib-check-deck、pptx-html-fidelity-audit、Marp QA 类 Skill | 渲染预览、检查溢出/错位/字体/编号/数据一致性，再局部修复。 | 没有 QA 的 PPT Skill 只能算“能生成”，不能算“可交付”。 |
+| 应该继承的能力 | 代表 Skill | 在 All-in-One 中的落点 |
+| --- | --- | --- |
+| 原生 PPTX 创建与编辑 | OpenAI slides、Anthropic pptx、Microsoft powerpoint、MiniMax pptx-generator、ppt-master | 文本、表格、图表、形状、连接线和备注都优先使用 PowerPoint 原生对象。 |
+| 模板与品牌复用 | ppt-template-creator、pptx-from-layouts-skill、企业风格 PPT Skill | 先审计母版、版式、字体、配色和组件，再映射每一页，不另起一套风格。 |
+| 结构化中间计划 | Microsoft powerpoint、presentation-skill、paper-to-slides 类 Skill | 用 `deck_brief.json` 与 `slide_plan.json` 固化叙事、对象、数据、素材和来源。 |
+| 图片/PDF 重建 | image-to-editable-ppt-skill、slide-image-to-editable-pptx、EditableImage2PPTSkill | OCR + 版面理解 + 几何重建；只有不可可靠拆解的视觉区域保留为图片。 |
+| 学术/商业叙事 | academic-pptx-skill、scientific-slides、pitch-deck、ib-check-deck | 作为叙事和 QA modifier，不与底层 PPTX 构建路线混在一起。 |
+| 渲染 QA 与定点修复 | ib-check-deck、pptx-html-fidelity-audit、Marp QA 类 Skill | 同时检查内容、视觉和可编辑性；修复失败页后重新导出、重新渲染。 |
+| AI 视觉生成 | awesome-ppt-skills、codex-ppt、future-ppt-skill 等 image-first 路线 | 只吸收“生成视觉素材”的优势，不继承“整页图片交付”的缺点。 |
 
-结论：集大成 PPT Skill 的核心不应该是一个更长的 prompt，而应该是一个 **PPT Router + 结构化 slide plan + 多后端构建 + 可编辑对象策略 + 渲染 QA + 定点修复循环**。
+不作为主架构的能力也很明确：HTML/Markdown Slides 和 Google Slides 是独立输出产品；image-first 是视觉探索或素材生成方式。它们可以作为输入、后续适配或辅助工具，但不能替代原生可编辑 PPTX。
 
-## 集大成 All-in-One PPT Skill
+结论：一个集大成的 PPT Skill 应该是 **任务路由 + 叙事计划 + 对象材质化契约 + 原生 PPTX 构建 + 可选 AI 素材 + 成品渲染/结构 QA + 定点修复**。
 
-完整实现放在：[all-in-one-ppt/SKILL.md](all-in-one-ppt/SKILL.md)
+## All-in-One Editable PPT Skill
 
-### 定位
+完整实现：[all-in-one-ppt/SKILL.md](all-in-one-ppt/SKILL.md)
 
-`all-in-one-ppt` 是一个上层 Agent Skill。它不替代 PptxGenJS、python-pptx、HTML slide framework、Google Slides API 或图像生成工具，而是负责在 Agent 执行 PPT 任务时做编排：
+它处理不同的 PPT 任务，但默认只收敛到一种正式交付：**真正可编辑的 `.pptx`**。
 
 ```text
-用户请求
-  -> 判断任务类型
-  -> 生成 deck_brief.json
-  -> 生成 slide_plan.json
-  -> 选择构建/编辑/重建/HTML/Google Slides/QA 路线
-  -> 渲染预览
-  -> QA 报告
-  -> 定点修复
-  -> 交付 PPTX / 预览 / 源计划 / QA 记录
+主题 / 文档 / 数据 / 现有 PPTX / 模板 / PDF / 截图
+  -> 路由 create | edit | reconstruct | audit-repair
+  -> deck_brief.json
+  -> 叙事与 slide_plan.json
+  -> 每个对象选择 native | raster | hybrid
+  -> 缺少视觉素材时调用 imagegen
+  -> 原生 PPTX 构建或编辑
+  -> 全量渲染 + OOXML/对象结构检查
+  -> 定点修复并重新验证
+  -> editable .pptx
 ```
 
-### 核心原则
+### 四条路由
 
-- 默认生成 **可编辑 PPTX**，文本、简单形状、表格、图表尽量保留为 native editable objects。
-- 图片优先只用于视觉探索、海报式页面、或输入本身是图片/PDF 的重建任务。
-- 每个非平凡 deck 都必须保留 `deck_brief.json` 和 `slide_plan.json`，避免 Agent 只靠自然语言临场发挥。
-- `academic` 和 `business` 是场景模式，不是主构建路线；主路线仍然是 native PPTX、reconstruct、html-markdown 等。
-- 交付前必须预览和 QA，发现 blocker / major issue 后局部修复。
-
-### 主路由
-
-| Route | 适用任务 | 输出倾向 |
+| Route | 适用任务 | 交付要求 |
 | --- | --- | --- |
-| `native-pptx` | 从主题、文档、笔记、大纲生成新 PPT。 | 可编辑 PPTX。 |
-| `edit-existing` | 修改已有 `.pptx`，补页、改版、统一样式。 | 保留原模板和可编辑对象。 |
-| `template-extract` | 从参考 deck 提取母版、配色、字体、版式。 | 可复用模板/设计约束。 |
-| `image-first` | 高视觉冲击页面、概念稿、风格探索。 | slide image + 尽量保留 editable text。 |
-| `reconstruct` | 截图、PDF、图片式 PPT 转可编辑 PPT。 | native shapes/text/tables/charts。 |
-| `html-markdown` | Marp、Slidev、Reveal.js、HTML/CSS 演示。 | HTML/Markdown，可选导出 PPTX。 |
-| `google-slides` | 云端协作、Drive 分享、Slides API。 | Google Slides presentation。 |
-| `qa-audit` | 检查已有 deck 的格式、可读性、数据和可编辑性。 | QA report + 修复建议/补丁。 |
+| `create` | 从主题、报告、网页、Markdown、数据或大纲创建新 PPT | 新的可编辑 PPTX |
+| `edit` | 修改、扩写、翻译或重设计已有 PPTX | 保留未修改页面、母版、备注和对象结构 |
+| `reconstruct` | 将截图、PDF 或图片式幻灯片还原为 PPT | 原生对象优先的可编辑重建，并说明保真限制 |
+| `audit-repair` | 检查并修复内容、设计、数据、布局或可编辑性 | QA 结果；需要修复时交付修复后的 PPTX |
 
-### 场景模式
+`template`、`academic`、`business` 是 modifier。模板决定视觉系统；学术和商业模式决定叙事、证据与检查规则。它们不是新的输出格式。
 
-| Mode | 作用 |
+### 可编辑对象契约
+
+| 内容 | 默认实现 |
 | --- | --- |
-| `academic` | 论文汇报、文献综述、答辩、科研进展，强调论证结构、图表解释和引用可靠性。 |
-| `business` | Pitch deck、board update、客户提案、咨询报告，强调结论先行、数字一致性和商业叙事。 |
+| 标题、正文、标签、引用、页脚 | 原生 PowerPoint 文本 |
+| 表格 | 原生可编辑单元格 |
+| 数据图表 | 原生 chart 或由真实数据驱动的原生形状 |
+| 流程图、时间线、结构图、连接线 | 原生 shapes + connectors |
+| 照片、截图、纹理、复杂插画 | 独立、可替换的图片对象 |
+| 复杂科学/艺术视觉 | 图片核心 + 原生标题、图例、标签、批注和来源 |
 
-### 压缩版 SKILL.md
+`.pptx` 只是容器。普通内容页如果最终是一张铺满全页的 PNG，就不算可编辑 PPT。
 
-```markdown
----
-name: all-in-one-ppt
-description: End-to-end PowerPoint and slides production skill for planning, creating, editing, reconstructing, QA-checking, and repairing presentations.
----
+### 生图能力怎么用
 
-# All-in-One PPT
+当现有素材无法满足主题、构图、风格或留白要求时，Skill 可以调用 `$imagegen` 或当前 Agent 提供的生图工具，但遵守四条硬规则：
 
-Default to editable PPTX. Keep text, simple shapes, tables, and charts as native editable objects whenever practical.
+1. 生成的是封面图、场景图、插画、纹理或复杂视觉素材，不是完整幻灯片。
+2. 生图前根据目标版式确定比例、裁切、主体位置和文字留白。
+3. 默认要求图片中没有标题、正文、标签、数字、Logo 或水印。
+4. 图片作为独立对象插入；所有解释文字、图表、表格和标注继续使用 PowerPoint 原生对象。
 
-Every nontrivial deck must go through:
-route selection -> brief extraction -> slide_plan.json -> build/edit -> rendered preview -> QA report -> targeted repair -> final delivery package.
+最终 prompt、素材路径、目标页和用途会保存在计划或来源记录中，便于替换、追溯和复用。
 
-Choose one primary route:
-- native-pptx
-- edit-existing
-- template-extract
-- image-first
-- reconstruct
-- html-markdown
-- google-slides
-- qa-audit
+### 三道质量门
 
-Add optional modes:
-- academic
-- business
+- 内容与数据：故事完整，事实、单位、数字、引用和结论一致。
+- 视觉渲染：逐页检查溢出、重叠、字体、裁切、对比度、图表可读性和全局节奏。
+- 可编辑性：抽查文本、表格、图表、结构图和图片替换；检查 PPTX 内部是否真的存在对应的原生对象。
 
-Quality bar: do not deliver a deck with known text overflow, unreadable charts, missing fonts, distorted images, broken links, mismatched page sizes, inconsistent title placement, incorrect numbering, unexplained data, or unintended full-slide rasterization.
-```
+任何 blocker 或 major issue 都会阻止交付，修复后必须重新导出和检查。
 
-## 使用
-
-安装：
+### 使用
 
 ```bash
 git clone https://github.com/samaritan1998/awesome-ppt-skill.git
@@ -234,13 +215,11 @@ mkdir -p ~/.codex/skills
 ln -s "$PWD/all-in-one-ppt" ~/.codex/skills/all-in-one-ppt
 ```
 
-调用：
-
 ```text
-Use $all-in-one-ppt to turn this report into an editable, QA-checked PPTX.
+Use $all-in-one-ppt to turn this report into an editable PowerPoint. Keep text, charts, tables, and diagrams native; use image generation only for replaceable visual assets; render and repair the deck before delivery.
 ```
 
-本地验证：
+### 本地验证
 
 ```bash
 python3 quick_validate.py all-in-one-ppt
@@ -248,21 +227,20 @@ python3 all-in-one-ppt/scripts/plan_from_markdown.py examples/ppt_skill_research
 python3 all-in-one-ppt/scripts/validate_plan.py out/demo/slide_plan.json --brief out/demo/deck_brief.json
 python3 all-in-one-ppt/scripts/qa_report.py out/demo/slide_plan.json --out out/demo/qa_report.json
 python3 all-in-one-ppt/scripts/html_preview.py out/demo/slide_plan.json --out out/demo/preview.html
-```
-
-可选 PPTX smoke builder：
-
-```bash
-npm --prefix all-in-one-ppt install
+npm --prefix all-in-one-ppt ci
 node all-in-one-ppt/scripts/build_pptx_pptxgenjs.mjs out/demo/slide_plan.json out/demo/deck.pptx
+python3 all-in-one-ppt/scripts/inspect_pptx.py out/demo/deck.pptx --plan out/demo/slide_plan.json --out out/demo/pptx_report.json
 ```
 
-## 文件
+PptxGenJS 脚本只是用于验证最小原生对象链路的 smoke backend；正式任务应使用当前 Agent 环境中最完整、最能保留模板和对象语义的 PPTX 工具。
 
-- [all-in-one-ppt/SKILL.md](all-in-one-ppt/SKILL.md)：集大成 PPT Skill 主文件。
-- [all-in-one-ppt/references/router.md](all-in-one-ppt/references/router.md)：路由规则。
-- [all-in-one-ppt/references/workflows.md](all-in-one-ppt/references/workflows.md)：各路线工作流。
-- [all-in-one-ppt/references/qa_checklist.md](all-in-one-ppt/references/qa_checklist.md)：QA 清单。
+### 文件
+
+- [all-in-one-ppt/SKILL.md](all-in-one-ppt/SKILL.md)：主 Skill。
+- [all-in-one-ppt/references/editability_contract.md](all-in-one-ppt/references/editability_contract.md)：原生对象与图片边界。
+- [all-in-one-ppt/references/image_assets.md](all-in-one-ppt/references/image_assets.md)：素材搜索与生图工作流。
+- [all-in-one-ppt/references/workflows.md](all-in-one-ppt/references/workflows.md)：创建、编辑、重建和修复流程。
+- [all-in-one-ppt/references/qa_checklist.md](all-in-one-ppt/references/qa_checklist.md)：内容、视觉和可编辑性 QA。
 - [research/ppt_skill_list_2026_07_08.md](research/ppt_skill_list_2026_07_08.md)：Markdown 调研清单。
 - [research/ppt_skill_list_2026_07_08.csv](research/ppt_skill_list_2026_07_08.csv)：CSV 调研清单。
 - [research/ppt_skill_list_2026_07_08.json](research/ppt_skill_list_2026_07_08.json)：JSON 调研清单。

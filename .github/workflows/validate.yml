@@ -12,11 +12,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - name: Validate skill package
         run: python3 quick_validate.py all-in-one-ppt
+      - name: Test editability contracts
+        run: python3 -m unittest discover -s tests
       - name: Smoke test planning and QA scripts
         run: |
           python3 all-in-one-ppt/scripts/plan_from_markdown.py examples/ppt_skill_research_outline.md --out out/demo
           python3 all-in-one-ppt/scripts/validate_plan.py out/demo/slide_plan.json --brief out/demo/deck_brief.json
           python3 all-in-one-ppt/scripts/qa_report.py out/demo/slide_plan.json --out out/demo/qa_report.json
           python3 all-in-one-ppt/scripts/html_preview.py out/demo/slide_plan.json --out out/demo/preview.html
+      - name: Build and inspect smoke PPTX
+        run: |
+          npm --prefix all-in-one-ppt ci
+          node all-in-one-ppt/scripts/build_pptx_pptxgenjs.mjs out/demo/slide_plan.json out/demo/deck.pptx
+          python3 all-in-one-ppt/scripts/inspect_pptx.py out/demo/deck.pptx --plan out/demo/slide_plan.json --out out/demo/pptx_report.json
+          python3 all-in-one-ppt/scripts/validate_plan.py examples/native_objects_plan.json
+          python3 all-in-one-ppt/scripts/qa_report.py examples/native_objects_plan.json --out out/demo/native_objects_qa.json
+          node all-in-one-ppt/scripts/build_pptx_pptxgenjs.mjs examples/native_objects_plan.json out/demo/native_objects.pptx
+          python3 all-in-one-ppt/scripts/inspect_pptx.py out/demo/native_objects.pptx --plan examples/native_objects_plan.json --out out/demo/native_objects_report.json

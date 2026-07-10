@@ -1,75 +1,128 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "All-in-One PPT Slide Plan",
+  "title": "All-in-One Editable PowerPoint Slide Plan",
   "type": "object",
-  "required": ["deck_title", "route", "slides"],
+  "required": ["deck_title", "route", "canvas", "assets", "slides"],
   "properties": {
-    "deck_title": { "type": "string" },
+    "deck_title": { "type": "string", "minLength": 1 },
     "route": {
       "type": "string",
-      "enum": [
-        "native-pptx",
-        "edit-existing",
-        "template-extract",
-        "image-first",
-        "reconstruct",
-        "html-markdown",
-        "google-slides",
-        "qa-audit"
-      ]
+      "enum": ["create", "edit", "reconstruct", "audit-repair"]
     },
-    "modes": {
+    "modifiers": {
       "type": "array",
-      "items": { "type": "string", "enum": ["academic", "business"] },
+      "items": { "type": "string", "enum": ["template", "academic", "business"] },
       "uniqueItems": true
+    },
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height", "unit"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "const": "in" }
+      }
     },
     "style": {
       "type": "object",
       "properties": {
-        "aspect_ratio": { "type": "string", "default": "16:9" },
         "theme": { "type": "string" },
         "colors": { "type": "array", "items": { "type": "string" } },
-        "fonts": { "type": "array", "items": { "type": "string" } }
+        "fonts": { "type": "array", "items": { "type": "string" } },
+        "template_path": { "type": "string" }
       },
       "additionalProperties": true
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "kind", "status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "source": { "type": "string", "enum": ["supplied", "search", "imagegen", "derived"] },
+          "kind": { "type": "string", "enum": ["photo", "illustration", "screenshot", "texture", "complex-figure", "background"] },
+          "status": { "type": "string", "enum": ["planned", "ready", "rejected"] },
+          "path": { "type": "string" },
+          "source_url": { "type": "string" },
+          "license": { "type": "string" },
+          "prompt": { "type": "string" },
+          "alt_text": { "type": "string" },
+          "target_slides": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+          "reusable": { "type": "boolean", "default": false },
+          "composition": { "type": "string" },
+          "avoid": { "type": "array", "items": { "type": "string" } }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "source": { "const": "imagegen" } }, "required": ["source"] },
+            "then": { "required": ["prompt", "alt_text"] }
+          },
+          {
+            "if": { "properties": { "status": { "const": "ready" } }, "required": ["status"] },
+            "then": { "required": ["path"] }
+          }
+        ],
+        "additionalProperties": true
+      }
     },
     "slides": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["slide_no", "title", "takeaway", "layout", "objects"],
+        "required": ["slide_no", "title", "purpose", "takeaway", "layout", "objects"],
         "properties": {
           "slide_no": { "type": "integer", "minimum": 1 },
-          "title": { "type": "string" },
-          "takeaway": { "type": "string" },
-          "layout": { "type": "string" },
+          "title": { "type": "string", "minLength": 1 },
+          "purpose": { "type": "string", "minLength": 1 },
+          "takeaway": { "type": "string", "minLength": 1 },
+          "layout": { "type": "string", "minLength": 1 },
           "speaker_notes": { "type": "string" },
           "source_refs": { "type": "array", "items": { "type": "string" } },
           "objects": {
             "type": "array",
+            "minItems": 1,
             "items": {
               "type": "object",
-              "required": ["id", "type", "content"],
+              "required": ["id", "type", "content", "materialization", "editable"],
               "properties": {
-                "id": { "type": "string" },
+                "id": { "type": "string", "minLength": 1 },
                 "type": {
                   "type": "string",
-                  "enum": ["text", "title", "bullets", "image", "chart", "table", "shape", "diagram", "quote", "code", "equation"]
+                  "enum": ["text", "bullets", "image", "chart", "table", "shape", "connector", "diagram", "icon", "quote", "code", "equation", "video"]
                 },
+                "role": { "type": "string" },
                 "content": {},
-                "editable": { "type": "boolean", "default": true },
+                "materialization": { "type": "string", "enum": ["native", "raster", "hybrid"] },
+                "editable": { "type": "boolean" },
+                "replaceable": { "type": "boolean" },
+                "asset_id": { "type": "string" },
+                "raster_reason": { "type": "string" },
+                "source_refs": { "type": "array", "items": { "type": "string" } },
+                "allow_overlap": { "type": "boolean", "default": false },
                 "bbox": {
                   "type": "object",
                   "properties": {
                     "x": { "type": "number" },
                     "y": { "type": "number" },
-                    "w": { "type": "number" },
-                    "h": { "type": "number" }
+                    "w": { "type": "number", "exclusiveMinimum": 0 },
+                    "h": { "type": "number", "exclusiveMinimum": 0 }
                   },
                   "required": ["x", "y", "w", "h"]
-                }
+                },
+                "style": { "type": "object", "additionalProperties": true }
               },
+              "allOf": [
+                {
+                  "if": { "properties": { "materialization": { "const": "native" } }, "required": ["materialization"] },
+                  "then": { "properties": { "editable": { "const": true } } }
+                },
+                {
+                  "if": { "properties": { "type": { "const": "image" } }, "required": ["type"] },
+                  "then": { "required": ["asset_id", "replaceable"] }
+                }
+              ],
               "additionalProperties": true
             }
           },

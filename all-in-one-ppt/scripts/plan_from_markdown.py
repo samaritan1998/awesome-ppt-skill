@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create deck_brief.json and slide_plan.json skeletons from a Markdown outline."""
+"""Create editable-PPTX planning contracts from a Markdown outline."""
 
 from __future__ import annotations
 
@@ -9,57 +9,64 @@ import re
 from pathlib import Path
 
 
-PRIMARY_ROUTES = [
-    "native-pptx",
-    "edit-existing",
-    "template-extract",
-    "image-first",
-    "reconstruct",
-    "html-markdown",
-    "google-slides",
-    "qa-audit",
-]
-
-MODES = ["academic", "business"]
+PRIMARY_ROUTES = ["create", "edit", "reconstruct", "audit-repair"]
+MODIFIERS = ["template", "academic", "business"]
 
 
 def split_slides(markdown: str) -> list[dict]:
     lines = markdown.splitlines()
     slides: list[dict] = []
-    current: dict | None = None
+    current_title: str | None = None
     body: list[str] = []
 
     def flush() -> None:
-        nonlocal current, body
-        if current is None:
+        nonlocal current_title, body
+        if current_title is None:
             return
+
         bullets = [line.strip("-* ").strip() for line in body if line.strip().startswith(("-", "*"))]
-        paragraph = " ".join(line.strip() for line in body if line.strip() and not line.strip().startswith(("-", "*")))
-        objects = []
+        paragraph = " ".join(
+            line.strip() for line in body if line.strip() and not line.strip().startswith(("-", "*"))
+        )
         if bullets:
-            objects.append({"id": "bullets", "type": "bullets", "content": bullets, "editable": True})
-        elif paragraph:
-            objects.append({"id": "body", "type": "text", "content": paragraph, "editable": True})
+            obj_type = "bullets"
+            content: str | list[str] = bullets
         else:
-            objects.append({"id": "body", "type": "text", "content": "TBD", "editable": True})
-        current["objects"] = objects
-        slides.append(current)
-        current = None
+            obj_type = "text"
+            content = paragraph or "TBD"
+
+        slide_no = len(slides) + 1
+        slides.append(
+            {
+                "slide_no": slide_no,
+                "title": current_title,
+                "purpose": f"Explain {current_title}",
+                "takeaway": current_title,
+                "layout": "title-and-content",
+                "speaker_notes": "",
+                "source_refs": ["source-1"],
+                "objects": [
+                    {
+                        "id": f"s{slide_no}-body",
+                        "type": obj_type,
+                        "role": "body",
+                        "content": content,
+                        "materialization": "native",
+                        "editable": True,
+                        "bbox": {"x": 0.8, "y": 1.55, "w": 11.75, "h": 4.95},
+                        "style": {"font_size": 22},
+                    }
+                ],
+            }
+        )
+        current_title = None
         body = []
 
     for line in lines:
         match = re.match(r"^#{1,3}\s+(.+?)\s*$", line)
         if match:
             flush()
-            title = match.group(1)
-            current = {
-                "slide_no": len(slides) + 1,
-                "title": title,
-                "takeaway": title,
-                "layout": "title-and-content",
-                "speaker_notes": "",
-                "source_refs": [],
-            }
+            current_title = match.group(1)
         else:
             body.append(line)
 
@@ -69,11 +76,23 @@ def split_slides(markdown: str) -> list[dict]:
             {
                 "slide_no": 1,
                 "title": "Untitled deck",
+                "purpose": "Introduce the topic",
                 "takeaway": "Define the core message.",
                 "layout": "title-and-content",
                 "speaker_notes": "",
-                "source_refs": [],
-                "objects": [{"id": "body", "type": "text", "content": markdown.strip() or "TBD", "editable": True}],
+                "source_refs": ["source-1"],
+                "objects": [
+                    {
+                        "id": "s1-body",
+                        "type": "text",
+                        "role": "body",
+                        "content": markdown.strip() or "TBD",
+                        "materialization": "native",
+                        "editable": True,
+                        "bbox": {"x": 0.8, "y": 1.55, "w": 11.75, "h": 4.95},
+                        "style": {"font_size": 22},
+                    }
+                ],
             }
         )
     return slides
@@ -84,8 +103,8 @@ def main() -> int:
     parser.add_argument("markdown", type=Path)
     parser.add_argument("--out", type=Path, default=Path("out"))
     parser.add_argument("--title", default=None)
-    parser.add_argument("--route", default="native-pptx", choices=PRIMARY_ROUTES)
-    parser.add_argument("--mode", action="append", choices=MODES, default=[])
+    parser.add_argument("--route", default="create", choices=PRIMARY_ROUTES)
+    parser.add_argument("--modifier", "--mode", dest="modifiers", action="append", choices=MODIFIERS, default=[])
     args = parser.parse_args()
 
     text = args.markdown.read_text(encoding="utf-8")
@@ -94,24 +113,32 @@ def main() -> int:
     args.out.mkdir(parents=True, exist_ok=True)
 
     deck_brief = {
-        "task_type": args.route,
-        "primary_route": args.route,
-        "modes": args.mode,
+        "route": args.route,
+        "modifiers": args.modifiers,
         "audience": "TBD",
-        "goal": "Turn the supplied outline into an editable, QA-checked presentation.",
+        "goal": "Turn the supplied outline into an editable, QA-checked PowerPoint deck.",
+        "presentation_context": "TBD",
         "language": "auto",
-        "page_count": len(slides),
+        "slide_count": len(slides),
         "tone": "clear and professional",
-        "output": ["pptx", "pdf", "slide_plan", "qa_report"],
-        "editability": "native-first",
-        "sources": [{"path_or_url": str(args.markdown), "kind": "markdown"}],
-        "constraints": ["Preserve editability for text and simple objects."],
+        "deliverable": {"format": "pptx", "editable": True, "extras": ["plan", "qa-report"]},
+        "editability": {
+            "policy": "native-first",
+            "full_slide_raster_allowed": False,
+            "native_required": ["text", "bullets", "table", "chart", "shape", "connector", "diagram"],
+            "raster_allowed": ["photo", "illustration", "screenshot", "texture", "complex-figure"],
+        },
+        "sources": [{"id": "source-1", "path_or_url": str(args.markdown), "kind": "markdown"}],
+        "constraints": ["Keep semantic slide content editable and use generated images only as replaceable assets."],
+        "open_questions": ["Confirm audience and presentation context."],
     }
     slide_plan = {
         "deck_title": deck_title,
         "route": args.route,
-        "modes": args.mode,
-        "style": {"aspect_ratio": "16:9", "theme": "clean-professional"},
+        "modifiers": args.modifiers,
+        "canvas": {"width": 13.333, "height": 7.5, "unit": "in"},
+        "style": {"theme": "clean-professional", "colors": [], "fonts": ["Aptos"]},
+        "assets": [],
         "slides": slides,
     }
 

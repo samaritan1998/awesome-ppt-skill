@@ -16,6 +16,7 @@ Before installing or copying another PPT Skill:
 Confirm before:
 
 - Uploading private decks, PDFs, images, or data tables.
+- Sending confidential prompts, customer information, unreleased product material, or identifiable people to an image-generation service.
 - Changing Google Drive or Slides sharing permissions.
 - Sending proprietary material to image generation or OCR services.
 

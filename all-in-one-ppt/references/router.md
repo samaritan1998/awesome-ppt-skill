@@ -1,31 +1,36 @@
 # Router
 
-Use this file to choose the production path before building or editing a deck.
+Choose the operation that best describes the user's intent. The final artifact remains an editable PPTX unless the user explicitly asks for another format.
 
-## Inputs To Check
+Use exactly one canonical route ID: `create`, `edit`, `reconstruct`, or `audit-repair`. Never invent or extend route IDs. Record details such as source format, 30-to-10 compression, redesign, translation, or image assistance in the brief/constraints instead.
 
-- Is there an existing `.pptx`, PDF, screenshot, image, Markdown file, HTML deck, template, spreadsheet, or research paper?
-- Does the user require editable PowerPoint objects?
-- Is the deck for a business, academic, technical, training, sales, or creative presentation?
-- Does the user need Google Slides collaboration?
-- Is this primarily creation, editing, reconstruction, or QA?
+The only modifier IDs are `template`, `academic`, and `business`. `editable`, `imagegen`, `board`, `thesis-defense`, `no-template`, and similar descriptions are not modifiers; store them in their dedicated brief fields.
 
-## Route Rules
+## Primary Routes
 
-Choose exactly one primary route, then add optional modes or follow-up routes when needed.
-
-| Signal | Primary route | Mode / follow-up |
+| Signal | Route | First action |
 | --- | --- | --- |
-| "make a PPT", "turn this into slides", source text or outline | `native-pptx` | add `business` or `academic` mode when relevant |
-| existing `.pptx` and edit request | `edit-existing` | follow with `qa-audit` |
-| company template, brand deck, master slides | `template-extract` | follow with `native-pptx` |
-| screenshots, exported slide images, scanned PDF | `reconstruct` | follow with `qa-audit` |
-| Markdown, Marp, Slidev, HTML, code talk | `html-markdown` | follow with `native-pptx` if PPTX is required |
-| Drive, sharing, comments, online collaboration | `google-slides` | follow with `qa-audit` |
-| paper, arXiv, thesis, experiment, method/results | `native-pptx` | add `academic` mode |
-| pitch, board, customer, consulting, roadmap | `native-pptx` | add `business` mode |
-| "check", "polish", "fix layout", "make editable" | `qa-audit` | inspect source format first |
+| "make a PPT", source notes, report, document, URL, or data | `create` | Extract the brief and build a claim-led storyline |
+| Existing `.pptx` plus change request | `edit` | Render and inspect the complete source deck before editing |
+| Screenshots, PDF pages, scans, or image-only slides | `reconstruct` | Segment each page into semantic and visual objects |
+| "check", "polish", "fix", "make editable", or "why is this broken" | `audit-repair` | Render, inspect object structure, classify issues, then repair if requested |
 
-## Default Decision
+If several routes apply, choose the route that changes the artifact first, then run `audit-repair` as the final gate. Example: reconstructing a PDF uses `reconstruct`, not `audit-repair`, even though QA follows.
 
-If unclear, ask only the minimum blocking question. Otherwise use `native-pptx` with editable output, 16:9 layout, concise slide plan, rendered preview, and QA.
+## Modifiers
+
+- `template`: a supplied PPTX, master, brand deck, or reference deck controls layout and visual language. Never mix it with an unrelated default theme.
+- `academic`: evidence, methods, results, citations, and limitations drive the story.
+- `business`: decisions, outcomes, metrics, risks, recommendations, and next actions drive the story.
+
+Modifiers may combine, such as `create + template + business`. Use only `template`, `academic`, and `business` as modifier IDs; keep other descriptors in the brief.
+
+## Inputs Are Not Routes
+
+Treat Markdown, HTML, Word, PDF, spreadsheets, images, and web pages as sources to ingest. Do not choose a different output architecture merely because the source format differs.
+
+Treat Google Slides as a downstream import/export target when explicitly requested. Build and verify the editable PPTX first unless the host has a native Google Slides workflow that preserves the same object-level contract.
+
+## Default
+
+When the user says only "make a PPT", use `create`, 16:9, editable PPTX, concise audience-facing copy, native objects, restrained visuals, and render-based QA. Ask a question only if audience, purpose, or source ambiguity would materially change the result.

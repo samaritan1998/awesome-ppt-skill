@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
-"""Run lightweight structural QA on an all-in-one-ppt slide_plan.json."""
+"""Run plan-level structural and editability QA for all-in-one-ppt."""
 
 from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any
+
+
+NATIVE_REQUIRED = {"text", "bullets", "chart", "table", "shape", "connector", "diagram", "quote", "code"}
 
 
 def object_text_length(obj: dict[str, Any]) -> int:
@@ -27,49 +31,109 @@ def overlap(a: dict[str, float], b: dict[str, float]) -> bool:
     )
 
 
+def add_issue(issues: list[dict[str, Any]], severity: str, slide: int | None, issue: str, obj: str | None = None) -> None:
+    item: dict[str, Any] = {"severity": severity, "slide": slide, "issue": issue}
+    if obj:
+        item["object"] = obj
+    issues.append(item)
+
+
 def qa(plan: dict[str, Any]) -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     slides = plan.get("slides", [])
     if not slides:
-        issues.append({"severity": "blocker", "slide": None, "issue": "slide_plan has no slides"})
+        add_issue(issues, "blocker", None, "slide_plan has no slides")
+
+    canvas = plan.get("canvas", {})
+    canvas_width = float(canvas.get("width", 13.333))
+    canvas_height = float(canvas.get("height", 7.5))
+    canvas_area = canvas_width * canvas_height
+
+    assets = {asset.get("id"): asset for asset in plan.get("assets", []) if isinstance(asset, dict) and asset.get("id")}
+    asset_usage: Counter[str] = Counter()
 
     expected = 1
     for slide in slides:
         no = slide.get("slide_no")
         if no != expected:
-            issues.append({"severity": "major", "slide": no, "issue": f"slide_no should be {expected}"})
+            add_issue(issues, "major", no, f"slide_no should be {expected}")
         expected += 1
 
         if not slide.get("title"):
-            issues.append({"severity": "blocker", "slide": no, "issue": "missing title"})
+            add_issue(issues, "blocker", no, "missing title")
+        if not slide.get("purpose"):
+            add_issue(issues, "major", no, "missing purpose")
         if not slide.get("takeaway"):
-            issues.append({"severity": "major", "slide": no, "issue": "missing takeaway"})
+            add_issue(issues, "major", no, "missing takeaway")
+
         objects = slide.get("objects", [])
         if not objects:
-            issues.append({"severity": "blocker", "slide": no, "issue": "slide has no objects"})
+            add_issue(issues, "blocker", no, "slide has no objects")
+            continue
 
         total_text = sum(object_text_length(obj) for obj in objects)
         if total_text > 900:
-            issues.append({"severity": "major", "slide": no, "issue": f"too much text ({total_text} chars)"})
+            add_issue(issues, "major", no, f"too much text ({total_text} chars)")
         elif total_text > 550:
-            issues.append({"severity": "minor", "slide": no, "issue": f"dense slide text ({total_text} chars)"})
+            add_issue(issues, "minor", no, f"dense slide text ({total_text} chars)")
 
+        boxes: list[tuple[dict[str, Any], dict[str, float]]] = []
         for obj in objects:
-            if obj.get("type") in {"title", "text", "bullets", "table", "chart", "shape"} and obj.get("editable") is False:
-                issues.append({"severity": "major", "slide": no, "issue": f"{obj.get('id')} should usually be editable"})
-            bbox = obj.get("bbox")
-            if bbox:
-                for key in ("x", "y", "w", "h"):
-                    if key not in bbox:
-                        issues.append({"severity": "major", "slide": no, "issue": f"{obj.get('id')} bbox missing {key}"})
-                if bbox.get("w", 1) <= 0 or bbox.get("h", 1) <= 0:
-                    issues.append({"severity": "major", "slide": no, "issue": f"{obj.get('id')} has non-positive bbox size"})
+            obj_id = str(obj.get("id", "?"))
+            obj_type = obj.get("type")
+            materialization = obj.get("materialization")
 
-        boxes = [(obj.get("id", "?"), obj.get("bbox")) for obj in objects if isinstance(obj.get("bbox"), dict)]
-        for i, (id_a, box_a) in enumerate(boxes):
-            for id_b, box_b in boxes[i + 1 :]:
+            if materialization == "native" and obj.get("editable") is not True:
+                add_issue(issues, "major", no, "native object is not marked editable", obj_id)
+            if materialization == "raster" and obj.get("editable") is not False:
+                add_issue(issues, "major", no, "raster object must not claim internal editability", obj_id)
+            if obj_type in NATIVE_REQUIRED and materialization != "native":
+                severity = "blocker" if not obj.get("raster_reason") else "major"
+                add_issue(issues, severity, no, f"semantic {obj_type} should be native", obj_id)
+
+            if obj_type == "image":
+                asset_id = obj.get("asset_id")
+                if not asset_id or asset_id not in assets:
+                    add_issue(issues, "major", no, "image does not reference a declared asset", obj_id)
+                else:
+                    asset_usage[asset_id] += 1
+                if obj.get("replaceable") is not True:
+                    add_issue(issues, "major", no, "image is not marked replaceable", obj_id)
+
+            bbox = obj.get("bbox")
+            if isinstance(bbox, dict) and all(isinstance(bbox.get(key), (int, float)) for key in ("x", "y", "w", "h")):
+                if bbox["w"] <= 0 or bbox["h"] <= 0:
+                    add_issue(issues, "major", no, "non-positive bbox size", obj_id)
+                if bbox["x"] < 0 or bbox["y"] < 0 or bbox["x"] + bbox["w"] > canvas_width or bbox["y"] + bbox["h"] > canvas_height:
+                    add_issue(issues, "major", no, "object exceeds slide canvas", obj_id)
+
+                coverage = (bbox["w"] * bbox["h"]) / canvas_area if canvas_area else 0
+                if obj_type == "image" and coverage >= 0.9 and obj.get("role") != "background":
+                    add_issue(issues, "blocker", no, "full-slide raster image is not an explicit background", obj_id)
+                boxes.append((obj, bbox))
+
+        for index, (obj_a, box_a) in enumerate(boxes):
+            for obj_b, box_b in boxes[index + 1 :]:
+                if obj_a.get("allow_overlap") or obj_b.get("allow_overlap"):
+                    continue
+                if obj_a.get("role") == "background" or obj_b.get("role") == "background":
+                    continue
                 if overlap(box_a, box_b):
-                    issues.append({"severity": "major", "slide": no, "issue": f"bbox overlap: {id_a} and {id_b}"})
+                    add_issue(
+                        issues,
+                        "major",
+                        no,
+                        f"bbox overlap: {obj_a.get('id', '?')} and {obj_b.get('id', '?')}",
+                    )
+
+    for asset_id, asset in assets.items():
+        if asset.get("source") == "imagegen":
+            if not asset.get("prompt"):
+                add_issue(issues, "major", None, f"generated asset {asset_id} has no saved prompt")
+            if not asset.get("alt_text"):
+                add_issue(issues, "minor", None, f"generated asset {asset_id} has no alt text")
+        if asset_usage[asset_id] > 1 and not asset.get("reusable"):
+            add_issue(issues, "minor", None, f"asset {asset_id} is reused on {asset_usage[asset_id]} slides")
 
     status = "pass"
     if any(item["severity"] == "blocker" for item in issues):
@@ -90,7 +154,7 @@ def main() -> int:
     if args.out:
         args.out.write_text(text + "\n", encoding="utf-8")
     print(text)
-    return 1 if report["status"] == "fail" else 0
+    return 0 if report["status"] == "pass" else 1
 
 
 if __name__ == "__main__":

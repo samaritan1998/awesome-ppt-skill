@@ -1,8 +1,8 @@
 {
   "name": "all-in-one-ppt-skill",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "All-in-One PPT Agent Skill utilities for planning, QA, preview, and optional PPTX generation.",
+  "description": "Utilities for planning and validating native, editable PowerPoint decks with optional generated visual assets.",
   "type": "module",
   "engines": {
     "node": ">=18"

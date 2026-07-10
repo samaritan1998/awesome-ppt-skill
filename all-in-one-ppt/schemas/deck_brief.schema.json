@@ -1,61 +1,61 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "All-in-One PPT Deck Brief",
+  "title": "All-in-One Editable PowerPoint Deck Brief",
   "type": "object",
-  "required": ["task_type", "audience", "goal", "output", "editability"],
+  "required": ["route", "audience", "goal", "deliverable", "editability"],
   "properties": {
-    "task_type": {
+    "route": {
       "type": "string",
-      "enum": [
-        "native-pptx",
-        "edit-existing",
-        "template-extract",
-        "image-first",
-        "reconstruct",
-        "html-markdown",
-        "google-slides",
-        "academic",
-        "business",
-        "qa-audit"
-      ]
+      "enum": ["create", "edit", "reconstruct", "audit-repair"]
     },
-    "primary_route": {
-      "type": "string",
-      "enum": [
-        "native-pptx",
-        "edit-existing",
-        "template-extract",
-        "image-first",
-        "reconstruct",
-        "html-markdown",
-        "google-slides",
-        "qa-audit"
-      ]
-    },
-    "modes": {
+    "modifiers": {
       "type": "array",
-      "items": { "type": "string", "enum": ["academic", "business"] },
+      "items": { "type": "string", "enum": ["template", "academic", "business"] },
       "uniqueItems": true
     },
-    "audience": { "type": "string" },
-    "goal": { "type": "string" },
+    "audience": { "type": "string", "minLength": 1 },
+    "goal": { "type": "string", "minLength": 1 },
+    "presentation_context": { "type": "string" },
     "language": { "type": "string", "default": "auto" },
-    "page_count": { "type": ["integer", "string"], "default": "auto" },
+    "slide_count": { "type": ["integer", "string"], "default": "auto" },
     "tone": { "type": "string", "default": "clear and professional" },
-    "output": {
-      "type": "array",
-      "items": { "type": "string", "enum": ["pptx", "pdf", "png", "html", "google-slides", "slide_plan", "qa_report"] },
-      "minItems": 1
+    "deliverable": {
+      "type": "object",
+      "required": ["format", "editable"],
+      "properties": {
+        "format": { "const": "pptx" },
+        "editable": { "const": true },
+        "output_path": { "type": "string" },
+        "extras": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["pdf", "slide-images", "speaker-notes", "source-ledger", "plan", "qa-report"] },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
     },
     "editability": {
-      "type": "string",
-      "enum": ["native-first", "image-first-ok", "image-only-ok", "not-specified"],
-      "default": "native-first"
+      "type": "object",
+      "required": ["policy", "full_slide_raster_allowed"],
+      "properties": {
+        "policy": { "const": "native-first" },
+        "full_slide_raster_allowed": { "const": false },
+        "native_required": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "raster_allowed": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
     },
     "brand": {
       "type": "object",
       "properties": {
         "template_path": { "type": "string" },
+        "reference_deck_path": { "type": "string" },
         "colors": { "type": "array", "items": { "type": "string" } },
         "fonts": { "type": "array", "items": { "type": "string" } },
         "logo_path": { "type": "string" }
@@ -70,12 +70,14 @@
         "properties": {
           "path_or_url": { "type": "string" },
           "kind": { "type": "string" },
-          "notes": { "type": "string" }
+          "notes": { "type": "string" },
+          "confidential": { "type": "boolean", "default": false }
         },
         "additionalProperties": true
       }
     },
-    "constraints": { "type": "array", "items": { "type": "string" } }
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "open_questions": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": true
 }
